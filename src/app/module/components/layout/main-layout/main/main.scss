@@ -1,0 +1,21 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  flex-grow: 1;
+  margin-left: 300px;
+  transition: margin-left 0.3s ease;
+  background-color: #001d6a;
+  overflow-y: auto;
+}
+
+.content-expanded {
+  margin-left: 60px;
+}
+
+.content-inner {
+  padding: 1rem;
+}

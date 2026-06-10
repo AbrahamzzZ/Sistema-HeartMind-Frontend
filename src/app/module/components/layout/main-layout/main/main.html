@@ -1,0 +1,17 @@
+<div class="app-container">
+  <div class="position-relative">
+    <app-sidnebar
+      [isSidebarCollapsed]="isCollapsed"
+      (sidebarToggle)="toggleMenu()"
+      [userName]="userName"
+      [tipoUsuario]="tipoUsuario"
+      [menuItems]="menuItems">
+    </app-sidnebar>
+  </div>
+
+  <main class="content" [ngClass]="{ 'content-expanded': isCollapsed }">
+    <div class="content-inner">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
