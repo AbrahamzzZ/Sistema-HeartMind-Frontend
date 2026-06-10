@@ -1,6 +1,6 @@
-export interface ResultadoCuestionario{
+export interface ResultadoCuestionario {
     id: number;
-    usuarioId: number;
-    cuestionarioId: number;
     puntaje: number;
+    fecha_realizacion: string;
+    titulo: string;
 }
