@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { AuthLayout } from './module/components/layout/auth-layout/auth-layout';
 import { Main } from './module/components/layout/main-layout/main/main';
+import { authGuard } from './core/guard/auth.guard';
+import { roleGuard } from './core/guard/rol.guard';
 
 export const routes: Routes = [
     {
@@ -36,9 +38,14 @@ export const routes: Routes = [
     {
         path: 'home',
         component: Main,
+        canActivate: [authGuard],
         children: [
             {
                 path: 'contenido',
+                canActivate: [roleGuard],
+                data: {
+                    roles: ['Administrador', 'Usuario']
+                },
                 loadComponent: () =>
                     import('./module/pages/contenido-educativo/contenido-educativo-module').then(
                         (m) => m.ContenidoEducativoModule
@@ -46,6 +53,10 @@ export const routes: Routes = [
             },
             {
                 path: 'evaluacion',
+                canActivate: [roleGuard],
+                data: {
+                    roles: ['Administrador', 'Usuario']
+                },
                 loadComponent: () =>
                     import('./module/pages/evaluacion-riesgo-cardiovascular/evaluacion-riesgo-cardiovascular-module').then(
                         (m) => m.EvaluacionRiesgoCardiovascularModule
@@ -53,6 +64,10 @@ export const routes: Routes = [
             },
             {
                 path: 'cuestionario',
+                canActivate: [roleGuard],
+                data: {
+                    roles: ['Administrador', 'Usuario']
+                },
                 loadComponent: () =>
                     import('./module/pages/cuestionarios-autoevaluacion/cuestionarios-autoevaluacion-module').then(
                         (m) => m.CuestionariosAutoevaluacionModule
