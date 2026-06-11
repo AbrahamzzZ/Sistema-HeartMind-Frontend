@@ -75,7 +75,7 @@ export const routes: Routes = [
             },
             {
                 path: '**',
-                redirectTo: 'tray',
+                redirectTo: 'contenido',
                 pathMatch: 'full'
             }
         ],
