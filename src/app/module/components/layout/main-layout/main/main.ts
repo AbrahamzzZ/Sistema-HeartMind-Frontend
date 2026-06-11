@@ -21,26 +21,29 @@ export class Main implements OnInit{
 
     Administrador: [
       {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido'},
-      {label: 'Evaluación de Riesgo', icon: 'evaluacion.png', url: '/home/evaluacion'},
-      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario'}
+      {label: 'Evaluación de Riesgo', icon: 'riesgo.png', url: '/home/evaluacion'},
+      {label: 'Cuestionarios', icon: 'evaluacion.png', url: '/home/cuestionario'}
     ],
 
     Usuario: [
       {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido'},
-      {label: 'Evaluación de Riesgo', icon: 'evaluacion.png', url: '/home/evaluacion'},
-      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario'}
+      {label: 'Evaluación de Riesgo', icon: 'riesgo.png', url: '/home/evaluacion'},
+      {label: 'Cuestionarios', icon: 'evaluacion.png', url: '/home/cuestionario'}
     ]
   };
 
-  ngOnInit() {
+  ngOnInit(): void {
     const user = localStorage.getItem('user');
-    if (user) {
-      const parsed = JSON.parse(user);
-      this.userName = parsed.nombre;
-      this.tipoUsuario = parsed.tipo_usuario;
-      const idTipoUsuario = parsed.id_tipo_usuario;
-      this.menuItems = this.menusRol[idTipoUsuario] || [];
+    if (!user) {
+      return;
     }
+
+    const parsed = JSON.parse(user);
+    this.userName = parsed.nombre;
+    this.tipoUsuario = parsed.rol;
+    this.menuItems = this.menusRol[parsed.rol] || [];
+    console.log('ROL:', parsed.rol);
+    console.log('MENUS:', this.menuItems);
   }
 
   toggleMenu() {
