@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MaterialModule } from '../../ui/material-module';
 import { CommonModule } from '@angular/common';
-import { LoaderService } from '../../../core/services/loaderService';
+import { LoaderService } from '../../../core/service/loader.service';
 
 @Component({
   selector: 'app-loader',
   imports: [MaterialModule, CommonModule],
   templateUrl: './loader.html',
-  styleUrl: './loader.css',
+  styleUrl: './loader.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Loader {
