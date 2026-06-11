@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-main',
   standalone: false,
   templateUrl: './main.html',
-  styleUrls: ['./main.css']
+  styleUrls: ['./main.scss']
 })
 export class Main implements OnInit{
  @ViewChild('sidenav') sidenav!: MatSidenav;
@@ -18,7 +18,7 @@ export class Main implements OnInit{
   menuItems: Menu[] = [];
 
   private readonly menusRol: { [Key: number]: Menu[] } = {
-    4: [//ADMINISTRADOR
+    1: [//ADMINISTRADOR
       { label: 'Bandeja de Solicitudes', icon: 'bandeja-solicitud.png', url: '/home/tray'},
       { label: 'Ingresar Solicitud', icon: 'ingresar-solicitud.png', url: '/home/request'},
       { label: 'Mantenimiento de Usuario', icon: 'mantenimiento-usuario.png', url: '/home/user-maintenance'},
@@ -29,7 +29,7 @@ export class Main implements OnInit{
       { label: 'Calendario', icon: 'calendario.png', url: '/home/calendar'},
       { label: 'Log', icon: 'log.png', url: '/home/log'}
     ],
-    3: [//INSPECTOR
+    2: [//Usuario
       { label: 'Bandeja de Solicitudes', icon: 'bandeja-solicitud.png', url: '/home/tray'},
       { label: 'Ingresar Solicitud', icon: 'ingresar-solicitud.png', url: '/home/request'},
       { label: 'Calendario', icon: 'calendario.png', url: '/home/calendar'}

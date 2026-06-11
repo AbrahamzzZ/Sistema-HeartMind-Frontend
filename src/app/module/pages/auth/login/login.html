@@ -1,0 +1,46 @@
+<div class="login-wrapper">
+  <mat-card class="login-card">
+
+    <div class="login-header">
+      <h1>HeartMind</h1>
+      <p>Control y prevención de enfermedades cardiovasculares</p>
+    </div>
+
+    <form [formGroup]="formLogin" class="login-form" autocomplete="on" (ngSubmit)="login()">
+
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>mail</mat-icon>
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput type="email" formControlName="usuario" autocomplete="username" />
+
+        @if(usuario?.hasError('required')){
+          <mat-error>El correo es requerido</mat-error>
+        }
+
+        @if(usuario?.hasError('email')){
+          <mat-error>Ingresa un correo válido</mat-error>
+        }
+
+      </mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-icon matPrefix>lock</mat-icon>
+		<mat-label>Contraseña</mat-label>
+		<input matInput [type]="ocultarClave ? 'password' : 'text'"	formControlName="clave"autocomplete="current-password" />
+		<button	mat-icon-button matSuffix type="button" (click)="ocultarClave = !ocultarClave">
+			<mat-icon>{{ ocultarClave ? 'visibility' : 'visibility_off' }}</mat-icon>
+		</button>
+
+		@if(clave?.hasError('required')){
+			<mat-error>La contraseña es requerida</mat-error>
+		}
+	</mat-form-field>
+
+      <div class="actions">
+        <button mat-stroked-button type="button"class="register-btn" (click)="registrar()">Registrarse</button>
+        <button mat-flat-button color="primary" type="submit">Iniciar sesión</button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>
