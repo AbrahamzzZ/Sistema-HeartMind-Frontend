@@ -17,24 +17,20 @@ export class Main implements OnInit{
   tipoUsuario: string = '';
   menuItems: Menu[] = [];
 
-  private readonly menusRol: { [Key: number]: Menu[] } = {
-    1: [//ADMINISTRADOR
-      { label: 'Bandeja de Solicitudes', icon: 'bandeja-solicitud.png', url: '/home/tray'},
-      { label: 'Ingresar Solicitud', icon: 'ingresar-solicitud.png', url: '/home/request'},
-      { label: 'Mantenimiento de Usuario', icon: 'mantenimiento-usuario.png', url: '/home/user-maintenance'},
-      { label: 'Mantenimiento de Ramos', icon: 'mantenimiento-ramo.png', url: '/home/ramos-maintenance'},
-      { label: 'Mantenimiento de Parametros', icon: 'mantenimiento-parametro.png', url: '/home/parameter-maintenance'},
-      { label: 'Permisos Tipos de Usuarios', icon: 'permiso-tipo-usuario.png', url: '/home/user-type'},
-      { label: 'Ubicación de Usuarios', icon: 'ubicacion-usuario.png', url: '/home/user-location'},
-      { label: 'Calendario', icon: 'calendario.png', url: '/home/calendar'},
-      { label: 'Log', icon: 'log.png', url: '/home/log'}
+  private readonly menusRol: { [key: string]: Menu[] } = {
+
+    Administrador: [
+      {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido'},
+      {label: 'Evaluación de Riesgo', icon: 'evaluacion.png', url: '/home/evaluacion'},
+      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario'}
     ],
-    2: [//Usuario
-      { label: 'Bandeja de Solicitudes', icon: 'bandeja-solicitud.png', url: '/home/tray'},
-      { label: 'Ingresar Solicitud', icon: 'ingresar-solicitud.png', url: '/home/request'},
-      { label: 'Calendario', icon: 'calendario.png', url: '/home/calendar'}
+
+    Usuario: [
+      {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido'},
+      {label: 'Evaluación de Riesgo', icon: 'evaluacion.png', url: '/home/evaluacion'},
+      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario'}
     ]
-  }
+  };
 
   ngOnInit() {
     const user = localStorage.getItem('user');
