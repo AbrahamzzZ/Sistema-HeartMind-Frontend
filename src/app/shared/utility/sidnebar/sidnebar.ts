@@ -1,4 +1,4 @@
-import { Menu } from '../../../core/interfaces/login/menu';
+import { Menu } from '../../../core/interface/menu';
 import { CommonModule, NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
@@ -8,7 +8,7 @@ import { MaterialModule } from '../../ui/material-module';
   selector: 'app-sidnebar',
   imports: [CommonModule, NgClass, RouterLink, MaterialModule],
   templateUrl: './sidnebar.html',
-  styleUrl: './sidnebar.css'
+  styleUrl: './sidnebar.scss'
 })
 export class Sidnebar {
   @Input() isSidebarCollapsed = false;

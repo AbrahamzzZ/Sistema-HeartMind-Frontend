@@ -1,0 +1,73 @@
+<div class="registro-wrapper">
+  <mat-card class="registro-card">
+    <div class="registro-header">
+      <h1>Crear cuenta</h1>
+      <p>Únete a HeartMind y comienza a cuidar tu salud cardiovascular.</p>
+    </div>
+
+    <form [formGroup]="formRegistro" class="registro-form" (ngSubmit)="registrar()">
+
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-label>Nombre completo</mat-label>
+        <input matInput formControlName="nombre">
+        @if(nombre?.hasError('required')){
+          <mat-error>El nombre es requerido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>mail</mat-icon>
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput type="email" formControlName="correo">
+
+        @if(correo?.hasError('required')){
+          <mat-error>El correo es requerido</mat-error>
+        }
+
+        @if(correo?.hasError('email')){
+          <mat-error>Correo inválido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="ocultarClave ? 'password' : 'text'" formControlName="contrasena">
+        <button mat-icon-button matSuffix type="button" (click)="ocultarClave = !ocultarClave">
+          <mat-icon>{{ ocultarClave ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+
+        @if(contrasena?.hasError('required')){
+          <mat-error>La contraseña es requerida</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>cake</mat-icon>
+        <mat-label>Edad</mat-label>
+        <input matInput  type="number" formControlName="edad">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>wc</mat-icon>
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="genero">
+          <mat-option value="M">Masculino</mat-option>
+          <mat-option value="F"> Femenino</mat-option>
+          <mat-option value="Otro">Otro</mat-option>
+        </mat-select>
+
+        @if(genero?.hasError('required')){
+          <mat-error>La género es requerida</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-stroked-button type="button" (click)="volverLogin()"> Volver </button>
+        <button mat-flat-button color="primary" type="submit">Registrarse</button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>
