@@ -1,0 +1,158 @@
+.sidebar {
+  background-color: #001d6a;
+  color: #fff;
+  height: 100vh;
+  width: 300px;
+  position: fixed;
+  border-right: 1px solid #002080;
+  display: flex;            
+  flex-direction: column;     
+  overflow: hidden;
+}
+
+.sidebar-collapsed {
+  width: 60px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #002080;
+}
+
+.sidebar-toggle-btn-inside {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-toggle-btn-inside:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.sidebar-menu {
+  flex-grow: 1;             
+  overflow-y: auto;         
+}
+
+.sidebar-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu-item a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.sidebar-menu-item a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-item img {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.sidebar-item-text {
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;    
+  padding: 10px 0;
+  width: 100%;        
+}
+
+.user-name,
+.user-role {
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+  white-space: nowrap;    
+  overflow: hidden;       
+  text-overflow: ellipsis; 
+  max-width: 90%;      
+}
+
+.footer-container {
+  background-color: #001d6a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0;
+  margin-top: auto;         
+  position: relative;       
+  z-index: 1;
+}
+
+.footer-container-collapsed {
+  background-color: #001d6a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  margin-top: auto;         
+  position: relative;       
+  z-index: 1;
+}
+
+::ng-deep .mat-mdc-tooltip {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: #fff !important;
+}
+
+@media (max-height: 700px) {
+  .sidebar-item-text {
+    font-size: 13px;
+  }
+
+  .sidebar-item img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .user-name,
+  .user-role {
+    font-size: 12px;
+  }
+
+  .footer-container span {
+    font-size: 13px;
+  }
+}
+
+@media (max-height: 600px) {
+  .sidebar-item-text {
+    font-size: 12px;
+  }
+  .sidebar-item {
+    padding: 0.5rem 0.75rem;
+  }
+  .sidebar-item img {
+    width: 16px;
+    height: 16px;
+  }
+}
