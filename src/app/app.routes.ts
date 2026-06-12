@@ -74,6 +74,17 @@ export const routes: Routes = [
                     ), 
             },
             {
+                path: 'historial',
+                canActivate: [roleGuard],
+                data: {
+                    roles: ['Administrador', 'Usuario']
+                },
+                loadChildren: () =>
+                    import('./module/pages/historial-medico/historial-medico-module').then(
+                        (m) => m.HistorialMedicoModule
+                    ), 
+            },
+            {
                 path: '**',
                 redirectTo: 'contenido',
                 pathMatch: 'full'

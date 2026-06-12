@@ -1,0 +1,89 @@
+.container {
+  padding: 24px;
+}
+
+.card {
+  max-width: 1000px;
+  margin: auto;
+  border-radius: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.checks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  min-width: 180px;
+}
+
+.resultado-card {
+  margin-top: 24px;
+  border-radius: 16px;
+}
+
+.resultado-grid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.label {
+  color: #777;
+  font-size: 14px;
+}
+
+.valor {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.riesgo {
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.bajo {
+  background: #2e7d32;
+}
+
+.moderado {
+  background: #f9a825;
+}
+
+.alto {
+  background: #c62828;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}

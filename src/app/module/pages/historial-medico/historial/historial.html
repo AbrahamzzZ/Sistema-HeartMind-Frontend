@@ -1,0 +1,39 @@
+<div class="container">
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Historial de Evaluaciones </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="exportarExcel()">Exportar Excel</button>
+      </div>
+
+      <table mat-table [dataSource]="historial">
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let row">{{ row.fecha_evaluacion }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="imc">
+          <th mat-header-cell *matHeaderCellDef>IMC</th>
+          <td mat-cell *matCellDef="let row">{{ row.imc }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="puntaje">
+          <th mat-header-cell *matHeaderCellDef>Puntaje</th>
+          <td mat-cell *matCellDef="let row">{{ row.puntaje }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="riesgo">
+          <th mat-header-cell *matHeaderCellDef>Riesgo</th>
+          <td mat-cell *matCellDef="let row">{{ row.resultado_riesgo }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

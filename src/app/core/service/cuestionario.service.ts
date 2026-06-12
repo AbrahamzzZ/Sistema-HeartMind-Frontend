@@ -3,9 +3,9 @@ import { environment as ENV } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../interface/apiResponse';
-import { Cuestionario } from '../interface/cuestionario';
-import { ResultadoCuestionario } from '../interface/resultadoCuestionario';
-import { ResultadoResolverCuestionario } from '../interface/resultadoResolverCuestionario';
+import { Cuestionario } from '../interface/cuestionario/cuestionario';
+import { ResultadoCuestionario } from '../interface/cuestionario/resultadoCuestionario';
+import { ResultadoResolverCuestionario } from '../interface/cuestionario/resultadoResolverCuestionario';
 
 @Injectable({
   providedIn: 'root',

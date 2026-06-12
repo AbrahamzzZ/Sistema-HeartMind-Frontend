@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { EvaluacionRiesgoCardiovascularRoutingModule } from './evaluacion-riesgo-cardiovascular-routing-module';
 import { Evalucion } from './evalucion/evalucion';
+import { MaterialModule } from '../../../shared/ui/material-module';
 
 
 @NgModule({
@@ -10,7 +10,7 @@ import { Evalucion } from './evalucion/evalucion';
     Evalucion
   ],
   imports: [
-    CommonModule,
+    MaterialModule,
     EvaluacionRiesgoCardiovascularRoutingModule
   ]
 })
