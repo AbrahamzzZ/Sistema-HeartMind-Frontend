@@ -20,15 +20,15 @@ export class Main implements OnInit{
   private readonly menusRol: { [key: string]: Menu[] } = {
 
     Administrador: [
-      {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido'},
-      {label: 'Evaluación de Riesgo', icon: 'riesgo.png', url: '/home/evaluacion'},
-      {label: 'Cuestionarios', icon: 'evaluacion.png', url: '/home/cuestionario'}
+      {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido', description: 'Accede a materiales y recursos'},
+      {label: 'Evaluación de Riesgo', icon: 'riesgo.png', url: '/home/evaluacion', description: 'Realiza evaluaciones y análisis'},
+      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario', description: 'Responde cuestionarios y tests'}
     ],
 
     Usuario: [
-      {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido'},
-      {label: 'Evaluación de Riesgo', icon: 'riesgo.png', url: '/home/evaluacion'},
-      {label: 'Cuestionarios', icon: 'evaluacion.png', url: '/home/cuestionario'}
+      {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido', description: 'Accede a materiales y recursos'},
+      {label: 'Evaluación de Riesgo', icon: 'riesgo.png', url: '/home/evaluacion', description: 'Realiza evaluaciones y análisis'},
+      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario', description: 'Responde cuestionarios y tests'}
     ]
   };
 
@@ -42,8 +42,6 @@ export class Main implements OnInit{
     this.userName = parsed.nombre;
     this.tipoUsuario = parsed.rol;
     this.menuItems = this.menusRol[parsed.rol] || [];
-    console.log('ROL:', parsed.rol);
-    console.log('MENUS:', this.menuItems);
   }
 
   toggleMenu() {

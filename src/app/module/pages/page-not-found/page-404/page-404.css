@@ -5,15 +5,14 @@
   justify-content: center;
   height: 100vh;
   text-align: center;
-  background: linear-gradient(135deg, #001d6a, #002b8e);
+  background: linear-gradient(135deg, #E63946, #D62839);
   color: white;
-  padding: 20px;
 }
 
 h1{
   font-size: 120px;
   font-weight: 800;
-  color: #f7b73b;
+  color: #FFFFFF;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -29,8 +28,8 @@ p{
 }
 
 .btn-home {
-  background-color: #f7b73b !important;
-  color: #001d6a !important;
+  background-color: #2A9D8F !important;
+  color: white !important;
   font-weight: 600;
   padding: 10px 24px;
   border-radius: 8px;
@@ -39,7 +38,7 @@ p{
 
 .btn-home:hover{
     background-color: white !important;
-    color: #001d6a !important;
+    color: #E63946 !important;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
