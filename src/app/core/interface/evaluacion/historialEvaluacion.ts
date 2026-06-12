@@ -3,6 +3,6 @@ export interface HistorialEvaluacion {
   usuarioId: number;
   imc: number;
   puntaje: number;
-  resultadoRiesgo: string;
-  fechaEvaluacion?: string;
+  resultado_riesgo?: string;
+  fecha_evaluacion?: string;
 }
