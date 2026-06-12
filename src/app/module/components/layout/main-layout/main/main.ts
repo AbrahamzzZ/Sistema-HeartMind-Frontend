@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Menu } from '../../../../../core/interface/menu';
+import { Menu } from '../../../../../core/interface/usuario/menu';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,13 +22,15 @@ export class Main implements OnInit{
     Administrador: [
       {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido', description: 'Accede a materiales y recursos'},
       {label: 'Evaluación de Riesgo', icon: 'riesgo.png', url: '/home/evaluacion', description: 'Realiza evaluaciones y análisis'},
-      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario', description: 'Responde cuestionarios y tests'}
+      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario', description: 'Responde cuestionarios y tests'},
+      {label: 'Historial Médico', icon: 'historial.png', url: '/home/historial', description: 'Revisa tus historiales médicos'}
     ],
 
     Usuario: [
       {label: 'Contenido Educativo', icon: 'contenido.png', url: '/home/contenido', description: 'Accede a materiales y recursos'},
       {label: 'Evaluación de Riesgo', icon: 'riesgo.png', url: '/home/evaluacion', description: 'Realiza evaluaciones y análisis'},
-      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario', description: 'Responde cuestionarios y tests'}
+      {label: 'Cuestionarios', icon: 'cuestionario.png', url: '/home/cuestionario', description: 'Responde cuestionarios y tests'},
+      {label: 'Historial Médico', icon: 'historial.png', url: '/home/historial', description: 'Revisa tus historiales médicos'}
     ]
   };
 

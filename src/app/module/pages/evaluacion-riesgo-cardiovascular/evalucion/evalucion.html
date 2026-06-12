@@ -1,1 +1,93 @@
-<p>evalucion works!</p>
+<div class="container">
+  <mat-card class="card">
+
+    <mat-card-header>
+      <mat-card-title>Autoevaluación de Riesgo Cardiovascular</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div class="grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Edad</mat-label>
+            <input matInput type="number" formControlName="edad">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Peso (kg)</mat-label>
+            <input matInput type="number" formControlName="peso">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Altura (m)</mat-label>
+            <input matInput type="number" formControlName="altura">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Presión sistólica</mat-label>
+            <input matInput type="number" formControlName="presionSistolica">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Presión diastólica</mat-label>
+            <input matInput type="number" formControlName="presionDiastolica">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Colesterol</mat-label>
+            <input matInput type="number" formControlName="nivelColesterol">
+          </mat-form-field>
+
+        </div>
+
+        <div class="checks">
+          <mat-checkbox formControlName="fumador">Fumador</mat-checkbox>
+          <mat-checkbox formControlName="diabetico">Diabético</mat-checkbox>
+          <mat-checkbox formControlName="actividadFisica">Realiza actividad física</mat-checkbox>
+          <mat-checkbox formControlName="antecedentesFamiliares">Antecedentes familiares</mat-checkbox>
+        </div>
+
+        <div class="actions">
+          <button mat-flat-button color="primary" (click)="guardar()">Evaluar Riesgo</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+@if(resultado){
+  <mat-card class="resultado-card">
+      <mat-card-header>
+          <mat-card-title>Resultado de la Evaluación</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+          <div class="resultado-grid">
+              <div class="dato">
+                  <span class="label">IMC</span>
+                  <span class="valor">{{ resultado.imc }}</span>
+              </div>
+
+              <div class="dato">
+                  <span class="label">Puntaje</span>
+                  <span class="valor">{{ resultado.puntaje }}</span>
+              </div>
+
+              <div class="dato">
+                  <span class="label">Nivel de Riesgo</span>
+
+                  <span class="riesgo" [class.bajo]="resultado.resultadoRiesgo === 'Bajo'" [class.moderado]="resultado.resultadoRiesgo === 'Moderado'" [class.alto]="resultado.resultadoRiesgo === 'Alto'">{{ resultado.resultadoRiesgo }}</span>
+              </div>
+          </div>
+
+          <mat-divider></mat-divider>
+          <h3>Recomendaciones</h3>
+          <ul>
+            @for(recomendacion of resultado.recomendaciones; track recomendacion){
+              <li>{{ recomendacion }}</li>
+            }
+          </ul>
+      </mat-card-content>
+  </mat-card>
+}

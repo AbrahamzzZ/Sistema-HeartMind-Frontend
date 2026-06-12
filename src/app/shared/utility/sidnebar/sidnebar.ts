@@ -1,4 +1,4 @@
-import { Menu } from '../../../core/interface/menu';
+import { Menu } from '../../../core/interface/usuario/menu';
 import { CommonModule, NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
