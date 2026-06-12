@@ -14,30 +14,38 @@
 
     <div class="sidebar-menu">
         <ul>
-            <li class="sidebar-menu-item">
-                @for(lista of menuItems; track $index) {
+            @for(lista of menuItems; track $index) {
+                <li class="sidebar-menu-item">
                     <a mat-list-item 
                        [routerLink]="lista.url" 
-                       class="sidebar-item"
+                       class="menu-card"
                        [matTooltip]="lista.label"
                        matTooltipPosition="right"
                        [matTooltipDisabled]="!isSidebarCollapsed">
-                        <img [src]="'img/img-menu/' + lista.icon" [alt]="lista.label">
+                        <div class="menu-icon-wrapper">
+                            <img [src]="'image/' + lista.icon" [alt]="lista.label" class="menu-icon">
+                        </div>
                         @if(!isSidebarCollapsed){
-                            <span class="sidebar-item-text">{{ lista.label }}</span>
+                            <div class="menu-content">
+                                <span class="menu-title">{{ lista.label }}</span>
+                                <span class="menu-description">{{ lista.description }}</span>
+                            </div>
                         }
                     </a>
-                }
-            </li>
+                </li>
+            }
         </ul>
     </div>
 
     @if(!isSidebarCollapsed){
-        <div class="footer-container" (click)="logout()" role="button">
-            <span>Logout</span>
-            <button mat-icon-button tabindex="-1">
-                <img src="img/img-menu/logout.png" alt="cerrar sesión">
-            </button>
+        <div class="footer-container menu-card" (click)="logout()" role="button">
+            <div class="menu-icon-wrapper">
+                <img src="image/logout.png" alt="cerrar sesión" class="menu-icon">
+            </div>
+            <div class="menu-content">
+                <span class="menu-title">Logout</span>
+                <span class="menu-description">Cerrar sesión</span>
+            </div>
         </div>
     }@else{
         <div class="footer-container-collapsed">
@@ -45,7 +53,7 @@
                     (click)="logout()"
                     matTooltip="Cerrar sesión"
                     matTooltipPosition="right">
-                <img src="img/img-menu/logout.png" alt="cerrar sesión">
+                <img src="image/logout.png" alt="cerrar sesión">
             </button>
         </div>
     }
