@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as ENV } from '../../../environments/environment';
-import { PreguntaCuestionario } from '../interface/preguntaCuestionario';
+import { PreguntaCuestionario } from '../interface/cuestionario/preguntaCuestionario';
+
 
 @Injectable({
   providedIn: 'root',
