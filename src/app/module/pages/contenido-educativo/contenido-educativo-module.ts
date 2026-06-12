@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ContenidoEducativoRoutingModule } from './contenido-educativo-routing-module';
 import { Contenido } from './contenido/contenido';
+import { MaterialModule } from '../../../shared/ui/material-module';
 
 
 @NgModule({
@@ -10,7 +10,7 @@ import { Contenido } from './contenido/contenido';
     Contenido
   ],
   imports: [
-    CommonModule,
+    MaterialModule,
     ContenidoEducativoRoutingModule
   ]
 })

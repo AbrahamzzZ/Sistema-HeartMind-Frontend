@@ -1,1 +1,39 @@
-<p>contenido works!</p>
+<div class="container">
+  @for(contenido of contenidos; track contenido.id){
+    <mat-card class="contenido-card">
+      <mat-card-header>
+        <mat-card-title>{{ contenido.titulo }}</mat-card-title>
+        <mat-card-subtitle>{{ contenido.categoria }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ contenido.descripcion }}</p>
+
+        @if(contenido.tipo === 'video'){
+          <video width="100%" controls>
+            <source [src]="contenido.url" type="video/mp4">
+          </video>
+        }
+        @if(contenido.tipo === 'ARTICULO'){
+          <div class="articulo">{{ contenido.contenido }}</div>
+        }
+      </mat-card-content>
+    </mat-card>
+
+    @if(esAdministrador){
+        <div class="admin-actions">
+            <button mat-icon-button color="primary" (click)="editar(contenido)">
+                <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="eliminar(contenido.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    }
+  }
+</div>
+<div class="actions">
+  @if(esAdministrador){
+    <button mat-raised-button color="primary" (click)="registrar()">Nuevo Contenido</button>
+  }
+</div>

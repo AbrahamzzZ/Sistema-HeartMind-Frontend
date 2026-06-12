@@ -1,0 +1,37 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.contenido-card {
+  margin-bottom: 24px;
+}
+
+video {
+  width: 100%;
+  max-height: 450px;
+  border-radius: 12px;
+  margin-top: 16px;
+  object-fit: cover;
+}
+
+.articulo {
+  margin-top: 16px;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
