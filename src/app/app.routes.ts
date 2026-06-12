@@ -46,7 +46,7 @@ export const routes: Routes = [
                 data: {
                     roles: ['Administrador', 'Usuario']
                 },
-                loadComponent: () =>
+                loadChildren: () =>
                     import('./module/pages/contenido-educativo/contenido-educativo-module').then(
                         (m) => m.ContenidoEducativoModule
                     ),
@@ -57,7 +57,7 @@ export const routes: Routes = [
                 data: {
                     roles: ['Administrador', 'Usuario']
                 },
-                loadComponent: () =>
+                loadChildren: () =>
                     import('./module/pages/evaluacion-riesgo-cardiovascular/evaluacion-riesgo-cardiovascular-module').then(
                         (m) => m.EvaluacionRiesgoCardiovascularModule
                     ), 
@@ -68,7 +68,7 @@ export const routes: Routes = [
                 data: {
                     roles: ['Administrador', 'Usuario']
                 },
-                loadComponent: () =>
+                loadChildren: () =>
                     import('./module/pages/cuestionarios-autoevaluacion/cuestionarios-autoevaluacion-module').then(
                         (m) => m.CuestionariosAutoevaluacionModule
                     ), 
