@@ -18,7 +18,7 @@ export class ContenidoService {
     return this.http.get<ApiResponse<Contenido>>(`${ENV.apiUrl}?ruta=contenidos&id=${id}`);
   }
 
-  registrar(contenido: Contenido){
+  registrar(contenido: FormData){
     return this.http.post<ApiResponse<null>>(`${ENV.apiUrl}?ruta=contenidos`, contenido);
   }
 
