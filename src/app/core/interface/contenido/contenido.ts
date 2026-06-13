@@ -4,6 +4,5 @@ export interface Contenido{
     descripcion: string;
     tipo: string;
     categoria: string;
-    contenido: string;
     url: string;
 }
