@@ -1,0 +1,155 @@
+:host {
+  display: block;
+}
+
+mat-card {
+  padding: 24px;
+  border-radius: 20px;
+  box-shadow: 0 18px 50px rgba(16, 42, 67, .08);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-content {
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+mat-card-header {
+  padding-bottom: 0;
+}
+
+mat-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.textarea{
+  resize: none;
+  max-height: 370px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.upload-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #0e2a43;
+}
+
+.upload-dropzone {
+  position: relative;
+  min-height: 170px;
+  border: 2px dashed #8fa8c9;
+  border-radius: 18px;
+  background: #f8fbff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.upload-dropzone.active {
+  background: #e9f2ff;
+  border-color: #3f8ee3;
+}
+
+.upload-dropzone:hover {
+  border-color: #3f8ee3;
+}
+
+.upload-dropzone input[type='file'] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-content {
+  text-align: center;
+  padding: 16px 18px;
+  pointer-events: none;
+}
+
+.upload-content mat-icon {
+  color: #1976d2;
+}
+
+.upload-title {
+  margin: 12px 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.upload-subtitle,
+.upload-hint {
+  margin: 0;
+  color: #4a6174;
+  font-size: .92rem;
+}
+
+.file-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+  color: #375a7f;
+  font-size: .95rem;
+}
+
+.file-name {
+  font-weight: 600;
+}
+
+.file-size {
+  opacity: .85;
+}
+
+.file-error {
+  margin-top: 10px;
+  color: #d32f2f;
+  font-size: .92rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+button[mat-flat-button] {
+  background: #2a9d8f;
+  color: white;
+}
+
+button[mat-flat-button]:hover {
+  box-shadow: 0 0 18px rgba(42, 157, 143, .24);
+}
+
+button[mat-button] {
+  color: #0e2a43;
+}
