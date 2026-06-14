@@ -1,6 +1,16 @@
 <div class="container">
-  <mat-card class="card">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Autoevaluación de Riesgo Cardiovascular</h1>
+      <p>Conoce tu nivel de riesgo cardiovascular mediante una evaluación rápida basada en indicadores de salud y hábitos de vida.</p>
+    </div>
 
+    <div class="hero-image">
+      <mat-icon>favorite</mat-icon>
+    </div>
+  </div>
+  
+  <mat-card class="card">
     <mat-card-header>
       <mat-card-title>Autoevaluación de Riesgo Cardiovascular</mat-card-title>
     </mat-card-header>
@@ -89,51 +99,72 @@
       </form>
     </mat-card-content>
   </mat-card>
+
+  @if(resultado){
+    <mat-card class="resultado-card">
+        <mat-card-header>
+            <mat-card-title>Resultado de la Evaluación</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="resultado-layout">
+              <div class="resultado-main">
+
+                <div
+                class="resultado-badge"
+                [class.bajo]="resultado.resultadoRiesgo === 'Bajo'"
+                [class.moderado]="resultado.resultadoRiesgo === 'Moderado'"
+                [class.alto]="resultado.resultadoRiesgo === 'Alto'">
+
+                <mat-icon class="riesgo-icon">
+                  {{
+                    resultado.resultadoRiesgo === 'Bajo'
+                      ? 'favorite'
+                      : resultado.resultadoRiesgo === 'Moderado'
+                        ? 'warning'
+                        : 'heart_broken'
+                  }}
+                </mat-icon>
+
+                <h2>{{ resultado.resultadoRiesgo }}</h2>
+
+                <p>Nivel de riesgo cardiovascular identificado</p>
+
+              </div>
+                <div class="resultado-grid">
+                  <div class="dato">
+                      <span class="label">IMC</span>
+                      <span class="valor">{{ resultado.imc }}</span>
+                  </div>
+
+                  <div class="dato">
+                      <span class="label">Puntaje</span>
+                      <span class="valor">{{ resultado.puntaje }}</span>
+                  </div>
+
+                  <div class="dato">
+                      <span class="label">Nivel de Riesgo</span>
+
+                      <span class="riesgo" [class.bajo]="resultado.resultadoRiesgo === 'Bajo'" [class.moderado]="resultado.resultadoRiesgo === 'Moderado'" [class.alto]="resultado.resultadoRiesgo === 'Alto'">{{ resultado.resultadoRiesgo }}</span>
+                  </div>
+                </div>
+
+                <mat-divider></mat-divider>
+                <h3>Recomendaciones</h3>
+                <ul>
+                  @for(recomendacion of resultado.recomendaciones; track recomendacion){
+                    <li>{{ recomendacion }}</li>
+                  }
+                </ul>
+              </div>
+
+              <div class="resultado-aside">
+                <div class="imagen-riesgo">
+                  <img [src]="getImagenRiesgo()" [alt]="resultado.resultadoRiesgo">
+                </div>
+              </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+  }
 </div>
-
-
-@if(resultado){
-  <mat-card class="resultado-card">
-      <mat-card-header>
-          <mat-card-title>Resultado de la Evaluación</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-          <div class="resultado-layout">
-            <div class="resultado-main">
-              <div class="resultado-grid">
-                <div class="dato">
-                    <span class="label">IMC</span>
-                    <span class="valor">{{ resultado.imc }}</span>
-                </div>
-
-                <div class="dato">
-                    <span class="label">Puntaje</span>
-                    <span class="valor">{{ resultado.puntaje }}</span>
-                </div>
-
-                <div class="dato">
-                    <span class="label">Nivel de Riesgo</span>
-
-                    <span class="riesgo" [class.bajo]="resultado.resultadoRiesgo === 'Bajo'" [class.moderado]="resultado.resultadoRiesgo === 'Moderado'" [class.alto]="resultado.resultadoRiesgo === 'Alto'">{{ resultado.resultadoRiesgo }}</span>
-                </div>
-              </div>
-
-              <mat-divider></mat-divider>
-              <h3>Recomendaciones</h3>
-              <ul>
-                @for(recomendacion of resultado.recomendaciones; track recomendacion){
-                  <li>{{ recomendacion }}</li>
-                }
-              </ul>
-            </div>
-
-            <div class="resultado-aside">
-              <div class="imagen-riesgo">
-                <img [src]="getImagenRiesgo()" [alt]="resultado.resultadoRiesgo">
-              </div>
-            </div>
-          </div>
-      </mat-card-content>
-  </mat-card>
-}

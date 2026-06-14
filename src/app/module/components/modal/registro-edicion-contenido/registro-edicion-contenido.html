@@ -1,17 +1,22 @@
 <mat-card>
+
   <mat-card-header>
-    <mat-card-title>{{ esEdicion ? 'Editar Contenido' : 'Registrar Contenido' }}</mat-card-title>
+    <mat-card-title>
+      {{ esEdicion ? 'Editar Contenido' : 'Registrar Contenido' }}
+    </mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <form [formGroup]="form">
       <div class="grid">
-
         <mat-form-field appearance="outline">
           <mat-label>Título</mat-label>
           <input matInput formControlName="titulo">
+
           @if(form.controls.titulo.invalid && form.controls.titulo.touched){
-            <mat-error>El título es requerido.</mat-error>
+            <mat-error>
+              El título es requerido.
+            </mat-error>
           }
         </mat-form-field>
 
@@ -25,78 +30,79 @@
           </mat-select>
 
           @if(form.controls.tipo.invalid && form.controls.tipo.touched){
-            <mat-error>El tipo de contenido es requerido.</mat-error>
+            <mat-error>El tipo de contenido es requerido. </mat-error>
           }
-
         </mat-form-field>
+
       </div>
 
       <mat-form-field appearance="outline" class="full-width">
 
         <mat-label>Categoría</mat-label>
+
         <mat-select formControlName="categoria">
           <mat-option value="alimentacion">Alimentación</mat-option>
           <mat-option value="ejercicio">Ejercicio</mat-option>
-          <mat-option value="habito_saludable"> Hábito Saludable</mat-option>
+          <mat-option value="habito_saludable">Hábito Saludable</mat-option>
           <mat-option value="advertencia">Advertencia</mat-option>
         </mat-select>
 
         @if(form.controls.categoria.invalid && form.controls.categoria.touched){
           <mat-error>La categoría es requerida.</mat-error>
         }
-
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Descripción</mat-label>
-        <textarea class="textarea" matInput formControlName="descripcion"></textarea>
+        <textarea matInput class="textarea" formControlName="descripcion"></textarea>
 
         @if(form.controls.descripcion.invalid && form.controls.descripcion.touched){
-          <mat-error>La descripción es requerida.</mat-error>
+          <mat-error>
+            La descripción es requerida.
+          </mat-error>
         }
       </mat-form-field>
 
       <div class="upload-container">
-
         <span class="upload-label">
+
           @if(form.controls.tipo.value === 'video'){
             Video (.mp4)
           } @else {
             Archivo adjunto (PDF / DOC / DOCX)
           }
+
         </span>
 
-        <div class="upload-dropzone" [class.active]="dropZoneActive" (dragover)="onDragOver($event)" (dragleave)="onDragLeave()" (drop)="onDrop($event)">
+        <div class="upload-dropzone" [class.active]="dropZoneActive" (dragover)="onDragOver($event)" (dragleave)="onDragLeave()"(drop)="onDrop($event)">
           <div class="upload-content">
-            <mat-icon>cloud_upload</mat-icon>
-            <p class="upload-title">
-              @if(form.controls.tipo.value === 'video'){
-                Arrastra un archivo MP4 aquí
-              } @else {
-                Arrastra un PDF o Word aquí
-              }
-            </p>
-            <p class="upload-subtitle">o haz clic para seleccionar</p>
-            <p class="upload-hint">Tipos permitidos: {{ acceptedFileTypesLabel }}</p>
-          </div>
+            <mat-icon>{{ archivoSeleccionado ? 'check_circle' : 'cloud_upload' }}</mat-icon>
+            <div>
 
+              @if(!archivoSeleccionado){
+                <p class="upload-title">Seleccionar archivo</p>
+                <p class="upload-subtitle">Arrastra el archivo o haz clic aquí</p>
+                <p class="upload-hint">Tipos permitidos: {{ acceptedFileTypesLabel }}</p>
+              } @else {
+                <p class="upload-title success">Archivo seleccionado</p>
+                <p class="upload-subtitle">{{ archivoSeleccionado.name }}</p>
+                <p class="upload-hint">{{ formatFileSize(archivoSeleccionado.size) }}</p>
+              }
+
+            </div>
+          </div>
           <input type="file" [accept]="acceptString" (change)="onArchivoSeleccionado($event)">
         </div>
 
-        <div class="file-info" *ngIf="archivoSeleccionado">
-          <span class="file-name">{{ archivoSeleccionado.name }}</span>
-          <span class="file-size">{{ formatFileSize(archivoSeleccionado.size) }}</span>
+        <div class="file-error" *ngIf="fileErrorMessage">
+          {{ fileErrorMessage }}
         </div>
-
-        <div class="file-error" *ngIf="fileErrorMessage">{{ fileErrorMessage }}</div>
-
       </div>
 
       <div class="actions">
         <button mat-button type="button" (click)="cancelar()">Cancelar</button>
         <button mat-flat-button color="primary" type="button" (click)="guardar()">{{ esEdicion ? 'Actualizar' : 'Guardar' }}</button>
       </div>
-
     </form>
   </mat-card-content>
 </mat-card>
