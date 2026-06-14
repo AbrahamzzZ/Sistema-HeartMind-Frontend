@@ -67,8 +67,8 @@ export class RegistroEdicionContenido implements OnInit {
       this.acceptString = '.mp4';
       this.acceptedFileTypesLabel = 'MP4';
     } else {
-      this.acceptString = '.pdf,.doc,.docx';
-      this.acceptedFileTypesLabel = 'PDF, DOC, DOCX';
+      this.acceptString = '.pdf';
+      this.acceptedFileTypesLabel = 'PDF';
     }
   }
 
@@ -110,7 +110,7 @@ export class RegistroEdicionContenido implements OnInit {
       this.archivoSeleccionado = null;
       this.fileErrorMessage = tipo === 'video'
         ? 'Solo se permiten archivos MP4.'
-        : 'Solo se permiten archivos PDF, DOC o DOCX.';
+        : 'Solo se permiten archivos PDF.';
       return false;
     }
 
@@ -132,7 +132,7 @@ export class RegistroEdicionContenido implements OnInit {
         return;
       }
       if ((tipo === 'articulo' || tipo === 'infografia') && !this.archivoSeleccionado) {
-        this.fileErrorMessage = 'Debe adjuntar un archivo PDF o Word para continuar.';
+        this.fileErrorMessage = 'Debe adjuntar un archivo PDF para continuar.';
         return;
       }
     }
