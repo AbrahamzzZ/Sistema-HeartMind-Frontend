@@ -1,9 +1,14 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { LoaderService } from '../service/loader.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  private readonly router = inject(Router);
+  private readonly loader = inject(LoaderService);
 
   intercept(
     req: HttpRequest<any>,
@@ -12,16 +17,25 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const token = localStorage.getItem('token');
 
-    if (!token) {
-      return next.handle(req);
-    }
+    const request = token ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }) : req;
 
-    const request = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    // show global loader for every HTTP request
+    this.loader.show();
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err?.status === 401) {
+          // token expired or unauthorized: clear storage and redirect to login
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          this.router.navigate(['/auth/login']);
+        }
+        return throwError(() => err);
+      }),
+      finalize(() => {
+        // hide loader when request completes (success or error)
+        this.loader.hide();
+      })
+    );
   }
 }
