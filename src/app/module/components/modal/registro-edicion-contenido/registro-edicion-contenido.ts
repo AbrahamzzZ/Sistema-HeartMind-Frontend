@@ -172,11 +172,6 @@ export class RegistroEdicionContenido implements OnInit {
       this.form.controls.categoria.value ?? ''
     );
 
-    formData.append(
-      'contenido',
-      this.form.controls.contenido.value ?? ''
-    );
-
     if (this.archivoSeleccionado) {
 
       formData.append(
@@ -213,17 +208,43 @@ export class RegistroEdicionContenido implements OnInit {
 
   actualizar(): void {
 
-    const contenido: Contenido = {
-      id: this.form.controls.id.value ?? 0,
-      titulo: this.form.controls.titulo.value ?? '',
-      descripcion: this.form.controls.descripcion.value ?? '',
-      tipo: this.form.controls.tipo.value ?? '',
-      categoria: this.form.controls.categoria.value ?? '',
-      url: this.data?.url ?? ''
-    };
+    const formData = new FormData();
+
+    formData.append(
+      'id',
+      String(this.form.controls.id.value)
+    );
+
+    formData.append(
+      'titulo',
+      this.form.controls.titulo.value ?? ''
+    );
+
+    formData.append(
+      'descripcion',
+      this.form.controls.descripcion.value ?? ''
+    );
+
+    formData.append(
+      'tipo',
+      this.form.controls.tipo.value ?? ''
+    );
+
+    formData.append(
+      'categoria',
+      this.form.controls.categoria.value ?? ''
+    );
+
+    if (this.archivoSeleccionado) {
+
+      formData.append(
+        'archivo',
+        this.archivoSeleccionado
+      );
+    }
 
     this.contenidoService
-      .editar(contenido)
+      .editar(formData)
       .subscribe({
         next: () => {
 
