@@ -87,3 +87,33 @@ ul {
 li {
   margin-bottom: 10px;
 }
+
+.imagen-riesgo {
+  text-align: center;
+}
+
+.imagen-riesgo img {
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.resultado-layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 20px;
+  align-items: start;
+}
+
+.resultado-aside {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .resultado-layout { grid-template-columns: 1fr; }
+  .imagen-riesgo img { max-width: 180px; }
+}

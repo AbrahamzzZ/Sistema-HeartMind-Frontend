@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { EvaluacionRiesgoService } from '../../../../core/service/evaluacionRiesgo.service';
+import { LoaderService } from '../../../../core/service/loader.service';
 
 @Component({
   selector: 'app-evalucion',
@@ -12,21 +13,30 @@ import { EvaluacionRiesgoService } from '../../../../core/service/evaluacionRies
 export class Evalucion {
   private readonly fb = inject(FormBuilder);
   private readonly evaluacionService = inject(EvaluacionRiesgoService);
+  private readonly loader = inject(LoaderService);
   resultado: any = null;
+  loading$ = this.loader.loading$;
 
   form = this.fb.nonNullable.group({
-    edad: [0, [Validators.required, Validators.min(1)]],
-    peso: [0, [Validators.required, Validators.min(1)]],
-    altura: [0, [Validators.required, Validators.min(0.5)]],
-    presionSistolica: [0, [Validators.required]],
-    presionDiastolica: [0, [Validators.required]],
-    nivelColesterol: [0, [Validators.required]],
+    edad: [30, [Validators.required, Validators.min(1), Validators.max(120)]],
+    peso: [70, [Validators.required, Validators.min(20), Validators.max(300)]],
+    altura: [1.7, [Validators.required, Validators.min(0.5), Validators.max(2.5)]],
+    presionSistolica: [120, [Validators.required, Validators.min(50), Validators.max(250)]],
+    presionDiastolica: [80, [Validators.required, Validators.min(30), Validators.max(160)]],
+    nivelColesterol: [180, [Validators.required, Validators.min(50), Validators.max(400)]],
 
     fumador: [false],
     diabetico: [false],
     actividadFisica: [false],
     antecedentesFamiliares: [false]
   });
+
+  get edad() { return this.form.get('edad'); }
+  get peso() { return this.form.get('peso'); }
+  get altura() { return this.form.get('altura'); }
+  get presionSistolica() { return this.form.get('presionSistolica'); }
+  get presionDiastolica() { return this.form.get('presionDiastolica'); }
+  get nivelColesterol() { return this.form.get('nivelColesterol'); }
 
   guardar(): void {
 
@@ -64,5 +74,23 @@ export class Evalucion {
           });
         }
       });
+  }
+
+  getImagenRiesgo(): string {
+    if (!this.resultado) return '';
+
+    switch (this.resultado.resultadoRiesgo) {
+      case 'Bajo':
+        return '/image/bajo.png';
+
+      case 'Moderado':
+        return '/image/moderado.png';
+
+      case 'Alto':
+        return '/image/alto.png';
+
+      default:
+        return '';
+    }
   }
 }
