@@ -1,3 +1,104 @@
-<h2>
-  {{ modoEdicion ? 'Editar cuestionario' : 'Registrar cuestionario' }}
-</h2>
+<div class="form-container">
+
+  <h2 class="title">
+    {{ modoEdicion ? 'Editar cuestionario' : 'Registrar cuestionario' }}
+  </h2>
+
+  <!-- DATOS GENERALES -->
+  <mat-card class="section">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput [(ngModel)]="cuestionario.titulo">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput rows="3" [(ngModel)]="cuestionario.descripcion"></textarea>
+    </mat-form-field>
+
+  </mat-card>
+
+  <!-- CREAR PREGUNTA -->
+  <mat-card class="section">
+
+    <h3>Agregar pregunta</h3>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Pregunta</mat-label>
+      <input matInput [(ngModel)]="nuevaPregunta">
+    </mat-form-field>
+
+    <!-- OPCIONES -->
+    <div class="opciones">
+
+      <div *ngFor="let op of opciones; let i = index" class="opcion-item">
+
+        <mat-form-field appearance="outline" class="opcion-input">
+          <mat-label>Opción {{ i + 1 }}</mat-label>
+          <input matInput [(ngModel)]="opciones[i]">
+        </mat-form-field>
+
+        <button mat-icon-button color="warn" (click)="eliminarOpcion(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+
+    </div>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="agregarOpcion()"
+      [disabled]="opciones.length >= 6">
+      + Opción
+    </button>
+
+    <div class="actions">
+      <button mat-flat-button color="primary" (click)="agregarPregunta()">
+        Agregar pregunta
+      </button>
+    </div>
+
+  </mat-card>
+
+  <!-- PREVIEW -->
+  <mat-card class="section">
+
+    <h3>Vista previa</h3>
+
+    <div cdkDropList (cdkDropListDropped)="drop($event)">
+
+      <div *ngFor="let p of cuestionario.preguntas; let i = index" cdkDrag class="pregunta-card">
+        <div class="pregunta-header">
+          <div class="drag-handle" cdkDragHandle>
+            <mat-icon>drag_indicator</mat-icon>
+          </div>
+
+          <h4>{{ p.pregunta }}</h4>
+
+          <button mat-icon-button color="warn" (click)="eliminarPregunta(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </div>
+
+        <mat-radio-group class="opciones-radio">
+
+          <mat-radio-button *ngFor="let o of p.opciones" [checked]="o.es_correcta">
+            {{ o.texto_opcion }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+  </mat-card>
+
+  <div class="footer-actions">
+    <button mat-stroked-button (click)="cancelar()">Cancelar</button>
+    <button mat-flat-button color="primary" (click)="guardar()">
+      Guardar cuestionario
+    </button>
+  </div>
+</div>
