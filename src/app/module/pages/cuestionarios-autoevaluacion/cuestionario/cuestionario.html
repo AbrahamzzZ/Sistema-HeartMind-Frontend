@@ -1,42 +1,65 @@
 <div class="page-container">
-  <div class="card">
-    <div class="header">
-      <h2>Cuestionarios</h2>
 
-      @if (esAdministrador) {
-        <button mat-raised-button color="primary" (click)="registrar()">
-          Registrar cuestionario
-        </button>
-      }
+  <div class="hero">
 
+    <div>
+      <h1>Cuestionarios de Salud</h1>
+
+      <p>
+        Completa las evaluaciones disponibles para conocer mejor tu estado
+        de salud cardiovascular y recibir recomendaciones personalizadas.
+      </p>
     </div>
 
-    <div class="cuestionarios-grid">
-      @for (cuestionario of cuestionarios; track cuestionario.id) {
+    <div class="hero-icon">
+      <mat-icon>quiz</mat-icon>
+    </div>
 
-        <div class="cuestionario-card">
-          <div class="cuestionario-header">
+  </div>
+
+  <div class="header">
+
+    <div>
+      <h2>Cuestionarios Disponibles</h2>
+      <span>{{ cuestionarios.length }} cuestionarios encontrados</span>
+    </div>
+
+    @if (esAdministrador) {
+      <button mat-flat-button color="primary" (click)="registrar()">
+        Registrar cuestionario
+      </button>
+    }
+
+  </div>
+
+  <div class="cuestionarios-grid">
+    @for (cuestionario of cuestionarios; track cuestionario.id) {
+      <div class="cuestionario-card">
+        <div class="cuestionario-header">
+          <div>
             <h3>{{ cuestionario.titulo }}</h3>
-            @if (esAdministrador) {
-              <div class="acciones">
-                <button mat-icon-button color="primary" (click)="editar(cuestionario.id)">
-                    <mat-icon>edit</mat-icon> 
-                </button>
-
-                <button mat-icon-button color="warn" (click)="eliminar(cuestionario.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            }
-
           </div>
 
-          <p>{{ cuestionario.descripcion }}</p>
+          @if (esAdministrador) {
+            <div class="acciones">
+              <button mat-icon-button color="primary" (click)="editar(cuestionario.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
 
-          <button mat-raised-button color="accent" (click)="resolver(cuestionario.id)">Iniciar evaluación</button>
+              <button mat-icon-button color="warn" (click)="eliminar(cuestionario.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          }
         </div>
-      }
 
-    </div>
+        <p class="descripcion">{{ cuestionario.descripcion }}</p>
+        <div class="footer">
+          <button mat-flat-button color="primary" (click)="resolver(cuestionario.id)">
+            Iniciar evaluación
+          </button>
+        </div>
+      </div>
+    }
   </div>
 </div>

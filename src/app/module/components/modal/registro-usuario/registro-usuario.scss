@@ -6,14 +6,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'Roboto', sans-serif;
-
-  background:
-    linear-gradient(
-      rgba(0, 29, 106, 0.8),
-      rgba(0, 29, 106, 0.8)
-    ),
-    url('/image/cardiovascular.png');
-
+  background: linear-gradient(rgb(237 237 237 / 65%), rgb(188 189 192 / 65%)), url(/image/cardiovascular.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
