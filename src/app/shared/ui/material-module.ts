@@ -26,6 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -56,7 +57,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatMenuModule,
     MatProgressBarModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioButton,
+    MatRadioGroup
   ],
   exports: [
     CommonModule,
@@ -85,7 +88,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatMenuModule,
     MatProgressBarModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioButton,
+    MatRadioGroup
   ]
 })
 export class MaterialModule { }

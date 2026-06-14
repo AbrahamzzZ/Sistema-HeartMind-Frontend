@@ -6,6 +6,7 @@ import { ApiResponse } from '../interface/apiResponse';
 import { Cuestionario } from '../interface/cuestionario/cuestionario';
 import { ResultadoCuestionario } from '../interface/cuestionario/resultadoCuestionario';
 import { ResultadoResolverCuestionario } from '../interface/cuestionario/resultadoResolverCuestionario';
+import { CuestionarioCompleto } from '../interface/cuestionario/cuestionarioCompleto';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,10 @@ export class CuestionarioService {
 
   crear(cuestionario: Cuestionario): Observable<any> {
     return this.http.post(`${ENV.apiUrl}?ruta=cuestionarios&accion=crear-cuestionario`, cuestionario);
+  }
+
+  crearCompleto(data: CuestionarioCompleto): Observable<any> {
+    return this.http.post(`${ENV.apiUrl}?ruta=cuestionarios&accion=crear-completo`, data);
   }
 
   actualizar(cuestionario: Cuestionario): Observable<any> {
