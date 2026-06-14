@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { CuestionariosAutoevaluacionRoutingModule } from './cuestionarios-autoevaluacion-routing-module';
 import { Cuestionario } from './cuestionario/cuestionario';
+import { MaterialModule } from '../../../shared/ui/material-module';
 
 
 @NgModule({
@@ -10,7 +10,7 @@ import { Cuestionario } from './cuestionario/cuestionario';
     Cuestionario
   ],
   imports: [
-    CommonModule,
+    MaterialModule,
     CuestionariosAutoevaluacionRoutingModule
   ]
 })

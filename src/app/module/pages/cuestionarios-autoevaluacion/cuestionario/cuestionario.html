@@ -1,1 +1,42 @@
-<p>cuestionario works!</p>
+<div class="page-container">
+  <div class="card">
+    <div class="header">
+      <h2>Cuestionarios</h2>
+
+      @if (esAdministrador) {
+        <button mat-raised-button color="primary" (click)="registrar()">
+          Registrar cuestionario
+        </button>
+      }
+
+    </div>
+
+    <div class="cuestionarios-grid">
+      @for (cuestionario of cuestionarios; track cuestionario.id) {
+
+        <div class="cuestionario-card">
+          <div class="cuestionario-header">
+            <h3>{{ cuestionario.titulo }}</h3>
+            @if (esAdministrador) {
+              <div class="acciones">
+                <button mat-icon-button color="primary" (click)="editar(cuestionario.id)">
+                    <mat-icon>edit</mat-icon> 
+                </button>
+
+                <button mat-icon-button color="warn" (click)="eliminar(cuestionario.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            }
+
+          </div>
+
+          <p>{{ cuestionario.descripcion }}</p>
+
+          <button mat-raised-button color="accent" (click)="resolver(cuestionario.id)">Iniciar evaluación</button>
+        </div>
+      }
+
+    </div>
+  </div>
+</div>

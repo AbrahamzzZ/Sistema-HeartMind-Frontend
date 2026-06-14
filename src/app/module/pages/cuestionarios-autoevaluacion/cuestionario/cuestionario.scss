@@ -1,0 +1,39 @@
+.page-container {
+  padding: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.cuestionarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.cuestionario-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.cuestionario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+}
