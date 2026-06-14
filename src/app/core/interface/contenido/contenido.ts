@@ -5,4 +5,5 @@ export interface Contenido{
     tipo: string;
     categoria: string;
     url: string;
+    public_id?: string;
 }
