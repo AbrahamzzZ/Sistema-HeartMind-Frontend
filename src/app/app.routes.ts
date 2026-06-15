@@ -98,5 +98,4 @@ export const routes: Routes = [
             (m) => m.PageNotFoundModule
         ),
     }
-
 ];

@@ -22,8 +22,8 @@ export class ContenidoService {
     return this.http.post<ApiResponse<null>>(`${ENV.apiUrl}?ruta=contenidos`, contenido);
   }
 
-  editar(contenido: Contenido){
-    return this.http.put(`${ENV.apiUrl}?ruta=contenidos`, contenido);
+  editar(formData: FormData){
+    return this.http.post(`${ENV.apiUrl}?ruta=contenidos&accion=editar`, formData);
   }
 
   eliminar(id: number){

@@ -1,6 +1,6 @@
 export interface OpcionRespuesta{
     id: number;
     preguntaId: number
-    textoOpcion: string;
-    esCorrecta: boolean;
+    texto_opcion: string;
+    es_correcta: boolean;
 }
