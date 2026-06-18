@@ -42,6 +42,10 @@ export class CuestionarioService {
     return this.http.put(`${ENV.apiUrl}?ruta=cuestionarios&accion=actualizar-cuestionario`, cuestionario);
   }
 
+  actualizarCompleto(data: any): Observable<any> {
+    return this.http.put(`${ENV.apiUrl}?ruta=cuestionarios&accion=actualizar-completo`, data);
+  }
+
   eliminar(id: number): Observable<any> {
     return this.http.delete(`${ENV.apiUrl}?ruta=cuestionarios&accion=eliminar-cuestionario&id=${id}`);
   }
