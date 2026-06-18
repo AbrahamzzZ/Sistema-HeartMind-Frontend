@@ -6,7 +6,6 @@
 
   <!-- DATOS GENERALES -->
   <mat-card class="section">
-
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Título</mat-label>
       <input matInput [(ngModel)]="cuestionario.titulo">
@@ -16,7 +15,6 @@
       <mat-label>Descripción</mat-label>
       <textarea matInput class="textarea" [(ngModel)]="cuestionario.descripcion"></textarea>
     </mat-form-field>
-
   </mat-card>
 
   <!-- CREAR PREGUNTA -->
@@ -35,8 +33,10 @@
 
         <mat-form-field appearance="outline" class="opcion-input">
           <mat-label>Opción {{ i + 1 }}</mat-label>
-          <input matInput [ngModel]="opciones[i]" (ngModelChange)="opciones[i] = $event" [name]="'opcion_' + i">
+          <input matInput [(ngModel)]="op.texto_opcion" [name]="'opcion_' + i">
         </mat-form-field>
+
+        <mat-radio-button [checked]="op.es_correcta" (change)="seleccionarCorrecta(i)">Correcta</mat-radio-button>
 
         <button mat-icon-button color="warn" (click)="eliminarOpcion(i)">
           <mat-icon>delete</mat-icon>
@@ -48,11 +48,8 @@
     <button mat-stroked-button color="primary" (click)="agregarOpcion()" [disabled]="opciones.length >= 6"> + Opción</button>
 
     <div class="actions">
-      <button mat-flat-button color="primary" (click)="agregarPregunta()">
-        Agregar pregunta
-      </button>
+      <button mat-flat-button color="primary" (click)="agregarPregunta()">Agregar pregunta</button>
     </div>
-
   </mat-card>
 
   <!-- PREVIEW -->
@@ -70,17 +67,15 @@
           <button mat-icon-button color="warn" (click)="eliminarPregunta(i)">
             <mat-icon>delete</mat-icon>
           </button>
-
         </div>
 
-        <mat-radio-group class="opciones-radio">
-          <mat-radio-button *ngFor="let o of p.opciones" [checked]="o.es_correcta">
+        <mat-radio-group class="opciones-radio" [value]="obtenerOpcionCorrecta(p)">
+          <mat-radio-button *ngFor="let o of p.opciones" [value]="o.id">
             {{ o.texto_opcion }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
     </div>
-
   </mat-card>
 
   <div class="footer-actions">
