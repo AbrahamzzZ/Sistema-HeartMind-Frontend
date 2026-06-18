@@ -14,7 +14,7 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Descripción</mat-label>
-      <textarea matInput rows="3" [(ngModel)]="cuestionario.descripcion"></textarea>
+      <textarea matInput class="textarea" [(ngModel)]="cuestionario.descripcion"></textarea>
     </mat-form-field>
 
   </mat-card>
@@ -31,12 +31,11 @@
 
     <!-- OPCIONES -->
     <div class="opciones">
-
-      <div *ngFor="let op of opciones; let i = index" class="opcion-item">
+      <div *ngFor="let op of opciones; let i = index; trackBy: trackByIndex" class="opcion-item">
 
         <mat-form-field appearance="outline" class="opcion-input">
           <mat-label>Opción {{ i + 1 }}</mat-label>
-          <input matInput [(ngModel)]="opciones[i]">
+          <input matInput [ngModel]="opciones[i]" (ngModelChange)="opciones[i] = $event" [name]="'opcion_' + i">
         </mat-form-field>
 
         <button mat-icon-button color="warn" (click)="eliminarOpcion(i)">
@@ -44,16 +43,9 @@
         </button>
 
       </div>
-
     </div>
 
-    <button
-      mat-stroked-button
-      color="primary"
-      (click)="agregarOpcion()"
-      [disabled]="opciones.length >= 6">
-      + Opción
-    </button>
+    <button mat-stroked-button color="primary" (click)="agregarOpcion()" [disabled]="opciones.length >= 6"> + Opción</button>
 
     <div class="actions">
       <button mat-flat-button color="primary" (click)="agregarPregunta()">
@@ -65,11 +57,8 @@
 
   <!-- PREVIEW -->
   <mat-card class="section">
-
     <h3>Vista previa</h3>
-
     <div cdkDropList (cdkDropListDropped)="drop($event)">
-
       <div *ngFor="let p of cuestionario.preguntas; let i = index" cdkDrag class="pregunta-card">
         <div class="pregunta-header">
           <div class="drag-handle" cdkDragHandle>
@@ -85,7 +74,6 @@
         </div>
 
         <mat-radio-group class="opciones-radio">
-
           <mat-radio-button *ngFor="let o of p.opciones" [checked]="o.es_correcta">
             {{ o.texto_opcion }}
           </mat-radio-button>
@@ -98,7 +86,7 @@
   <div class="footer-actions">
     <button mat-stroked-button (click)="cancelar()">Cancelar</button>
     <button mat-flat-button color="primary" (click)="guardar()">
-      Guardar cuestionario
+      {{ modoEdicion ? 'Guardar cambios' : 'Crear cuestionario' }}
     </button>
   </div>
 </div>
