@@ -141,6 +141,12 @@ mat-list-item {
   transition: transform 250ms ease;
 }
 
+.textarea {
+  resize: none;
+  min-height: 80px;
+  max-height: 150px;
+}
+
 @media (max-width: 768px) {
   .form-container {
     padding: 12px;

@@ -1,43 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
+:host {
+  display: block;
+}
+
 .registro-wrapper {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(rgb(237 237 237 / 65%), rgb(188 189 192 / 65%)), url(/image/cardiovascular.png);
+  background: linear-gradient(rgba(16, 42, 67, 0.60), rgba(16, 42, 67, 0.75)), url('/image/cardiovascular.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .registro-card {
-  max-width: 520px;
-  padding: 32px;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
+  width: 100%;
+  max-width: 620px;
+  padding: 36px;
+  border-radius: 28px;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.15), 0 25px 60px rgba(0,0,0,.08);
   animation: fadeIn .5s ease;
+  transition: all .25s ease;
 }
 
 .registro-header {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 22px;
+}
+
+.registro-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.registro-logo mat-icon {
+  color: #e53935;
+  font-size: 56px;
+  width: 56px;
+  height: 56px;
 }
 
 .registro-header h1 {
-  margin-bottom: 8px;
-  color: #E63946;
+  margin: 0;
+  color: #102a43;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .registro-header p {
-  color: #264653;
+  margin-top: 10px;
+  color: #64748b;
+  line-height: 1.6;
 }
 
 .registro-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 mat-form-field {
@@ -45,25 +76,45 @@ mat-form-field {
 }
 
 .actions {
+
   display: flex;
-  gap: 12px;
-  margin-top: 10px;
+  gap: 14px;
+
+  margin-top: 18px;
 }
 
 .actions button {
   flex: 1;
+  height: 48px;
 }
 
 button[mat-flat-button] {
-  background: #2A9D8F;
+
+  background: #1976d2;
   color: white;
+
+  font-weight: 600;
 }
 
 button[mat-flat-button]:hover {
-  box-shadow: 0 0 15px rgba(250, 178, 66, .5);
+
+  box-shadow:
+    0 8px 18px rgba(25, 118, 210, .25);
+}
+
+button[mat-stroked-button] {
+
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+button[mat-stroked-button]:hover {
+
+  background: #f8fafc;
 }
 
 @keyframes fadeIn {
+
   from {
     opacity: 0;
     transform: translateY(25px);
@@ -72,5 +123,24 @@ button[mat-flat-button]:hover {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .registro-card {
+    padding: 28px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .registro-header h1 {
+    font-size: 1.7rem;
   }
 }

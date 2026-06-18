@@ -86,8 +86,8 @@ export class Administracion implements OnInit {
     const pregunta = {
       pregunta: this.nuevaPregunta,
       opciones: opcionesValidas.map(o => ({
-        texto: o,
-        esCorrecta: false
+        texto_opcion: o,
+        es_correcta: false
       }))
     };
 
@@ -102,21 +102,31 @@ export class Administracion implements OnInit {
 
   guardar(): void {
 
-    this.servicio.crearCompleto(this.cuestionario).subscribe({
+    const request = this.modoEdicion
+      ? this.servicio.actualizarCompleto(this.cuestionario)
+      : this.servicio.crearCompleto(this.cuestionario);
+
+    request.subscribe({
       next: () => {
+
         Swal.fire({
           icon: 'success',
           title: 'Correcto',
-          text: 'Cuestionario creado correctamente'
+          text: this.modoEdicion
+            ? 'Cuestionario actualizado correctamente'
+            : 'Cuestionario creado correctamente'
         });
 
         this.router.navigate(['/home/cuestionario']);
       },
       error: (err) => {
+
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: err.error?.message ?? 'No se pudo procesar el cuestionario.'
+          text:
+            err.error?.message ??
+            'No se pudo procesar el cuestionario.'
         });
       }
     });
@@ -132,5 +142,9 @@ export class Administracion implements OnInit {
       event.previousIndex,
       event.currentIndex
     );
+  }
+
+  trackByIndex(index: number): number {
+    return index;
   }
 }
