@@ -2,8 +2,8 @@
   display: block;
 }
 
-.page-container {
-  max-width: 1200px;
+.container {
+  max-width: 1100px;
   margin: 0 auto;
   padding: 24px;
 }
@@ -12,9 +12,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  margin-bottom: 28px;
+  gap: 32px;
   padding: 32px;
+  margin-bottom: 24px;
   border-radius: 24px;
   background: linear-gradient(135deg, #e8f4ff, #f8fbff);
 }
@@ -74,11 +74,6 @@
   flex-direction: column;
   box-shadow: 0 4px 12px rgba(15, 23, 42, .05), 0 16px 40px rgba(15, 23, 42, .08);
   transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.cuestionario-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(15, 23, 42, .08), 0 24px 50px rgba(15, 23, 42, .12);
 }
 
 .cuestionario-header {

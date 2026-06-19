@@ -3,7 +3,7 @@ import { Contenido as ContenidoModel } from '../../../../core/interface/contenid
 import { ContenidoService } from '../../../../core/service/contenido.service';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
-import { RegistroEdicionContenido } from '../../../components/modal/registro-edicion-contenido/registro-edicion-contenido';
+import { RegistroEdicionContenido } from '../../../components/forms/registro-edicion-contenido/registro-edicion-contenido';
 
 @Component({
   selector: 'app-contenido',
