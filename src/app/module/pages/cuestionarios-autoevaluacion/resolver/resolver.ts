@@ -22,7 +22,6 @@ export class Resolver implements OnInit {
   }[] = [];
 
   ngOnInit(): void {
-
     const id = Number(
       this.route.snapshot.paramMap.get('id')
     );
@@ -64,11 +63,7 @@ export class Resolver implements OnInit {
   }
 
   enviar(): void {
-
-    if (
-      this.respuestas.length !==
-      this.cuestionario.preguntas.length
-    ) {
+    if (this.respuestas.length !== this.cuestionario.preguntas.length) {
       Swal.fire(
         'Error',
         'Debe responder todas las preguntas.',
@@ -82,20 +77,26 @@ export class Resolver implements OnInit {
       cuestionarioId: this.cuestionario.id,
       respuestas: this.respuestas
     }).subscribe({
-      next: (resp) => {
+        next: (resp) => {
 
-        Swal.fire({
-          icon: 'success',
-          title: 'Resultado',
-          html: `
-            <b>Puntaje:</b>
-            ${resp.data.puntaje}
-            /
-            ${this.cuestionario.preguntas.length}
-          `
-        });
+          Swal.fire({
+            icon: 'success',
+            title: 'Evaluación completada',
+            html: `
+              <p>Has finalizado el cuestionario correctamente.</p>
 
-      },
+              <div style="font-size:20px;margin-top:10px">
+                <b>${resp.data.puntaje}</b>
+                /
+                ${this.cuestionario.preguntas.length}
+              </div>
+            `,
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+            this.router.navigate(['/home/cuestionario']);
+          });
+
+        },
       error: (err) => {
         Swal.fire(
           'Error',
