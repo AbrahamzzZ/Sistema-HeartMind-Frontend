@@ -82,10 +82,9 @@ export class Cuestionario implements OnInit{
       });
 
     });
-
   }
 
   resolver(id: number): void {
-    console.log('resolver', id);
+    this.router.navigate(['/home/cuestionario/resolver', id]);
   }
 }

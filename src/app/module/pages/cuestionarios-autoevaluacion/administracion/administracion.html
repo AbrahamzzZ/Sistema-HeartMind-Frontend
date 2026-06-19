@@ -69,11 +69,13 @@
           </button>
         </div>
 
-        <mat-radio-group class="opciones-radio" [value]="obtenerOpcionCorrecta(p)">
-          <mat-radio-button *ngFor="let o of p.opciones" [value]="o.id">
+        <div class="opciones-radio">
+          <div *ngFor="let o of p.opciones" class="opcion-preview">
+            <mat-icon>{{o.es_correcta ? 'radio_button_checked' : 'radio_button_unchecked'}}</mat-icon>
             {{ o.texto_opcion }}
-          </mat-radio-button>
-        </mat-radio-group>
+          </div>
+        </div>
+        
       </div>
     </div>
   </mat-card>

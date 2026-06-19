@@ -149,7 +149,7 @@ export class Administracion implements OnInit {
         es_correcta: o.es_correcta
       }))
     };
-
+    
     this.cuestionario.preguntas.push(pregunta);
     this.nuevaPregunta = '';
     this.opciones = [

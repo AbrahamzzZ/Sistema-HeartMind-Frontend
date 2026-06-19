@@ -30,19 +30,11 @@ export class CuestionarioService {
     return this.http.post<ApiResponse<ResultadoResolverCuestionario>>(`${ENV.apiUrl}?ruta=cuestionarios&accion=resolver`, data);
   }
 
-  crear(cuestionario: Cuestionario): Observable<any> {
-    return this.http.post(`${ENV.apiUrl}?ruta=cuestionarios&accion=crear-cuestionario`, cuestionario);
-  }
-
   crearCompleto(data: CuestionarioCompleto): Observable<any> {
     return this.http.post(`${ENV.apiUrl}?ruta=cuestionarios&accion=crear-completo`, data);
   }
 
-  actualizar(cuestionario: Cuestionario): Observable<any> {
-    return this.http.put(`${ENV.apiUrl}?ruta=cuestionarios&accion=actualizar-cuestionario`, cuestionario);
-  }
-
-  actualizarCompleto(data: any): Observable<any> {
+  actualizarCompleto(data: CuestionarioCompleto): Observable<any> {
     return this.http.put(`${ENV.apiUrl}?ruta=cuestionarios&accion=actualizar-completo`, data);
   }
 

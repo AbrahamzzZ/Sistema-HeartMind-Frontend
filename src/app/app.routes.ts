@@ -24,7 +24,7 @@ export const routes: Routes = [
             {
                 path: 'registro',
                 loadComponent: () =>
-                    import('./module/components/modal/registro-usuario/registro-usuario').then(
+                    import('./module/components/forms/registro-usuario/registro-usuario').then(
                         m => m.RegistroUsuario
                     )
             },
