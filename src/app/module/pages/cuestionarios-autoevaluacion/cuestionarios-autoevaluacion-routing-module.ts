@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Cuestionario } from './cuestionario/cuestionario';
 import { Administracion } from './administracion/administracion';
+import { Resolver } from './resolver/resolver';
 
 const routes: Routes = [
   {
     path: '', component: Cuestionario, title: 'Cuestionario autoevaluación'
+  },
+  {
+    path: 'resolver/:id', component: Resolver, title: 'Resolver cuestionario'
   },
   {
     path: 'administracion', component: Administracion, title: 'Administrar cuestionario'
