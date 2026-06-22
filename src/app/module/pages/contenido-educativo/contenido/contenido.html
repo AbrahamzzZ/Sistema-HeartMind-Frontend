@@ -12,9 +12,17 @@
   
   @if(esAdministrador){
     <div class="toolbar">
-      <button mat-flat-button  color="primary" (click)="registrar()">
-        <mat-icon>add</mat-icon> Nuevo Contenido
+
+      <button mat-flat-button color="primary" (click)="registrar()">
+        <mat-icon>add</mat-icon>
+        Nuevo Contenido
       </button>
+
+      <button mat-stroked-button color="accent" (click)="irJuegos()">
+        <mat-icon>sports_esports</mat-icon>
+        Juegos Educativos
+      </button>
+
     </div>
   }
 
@@ -28,20 +36,6 @@
             <mat-card-subtitle>{{ contenido.categoria }}</mat-card-subtitle>
           </div>
         </mat-card-header>
-
-        <!--<mat-card-content>
-          <p class="descripcion">{{ contenido.descripcion }}</p>
-
-          @if(contenido.tipo === 'video') {
-
-            <video controls class="video-player">
-              <source [src]="contenido.url" type="video/mp4">
-              <track kind="captions" srclang="es" label="Español">
-            </video>
-          } @else {
-            <iframe title="Documento PDF" class="pdf-viewer" [src]="contenido.url | sanitizarUrl" type="application/pdf" width="400px"  height="400px"></iframe>
-          }
-        </mat-card-content>-->
 
         <mat-card-content>
           <p class="descripcion">{{ contenido.descripcion }}</p>

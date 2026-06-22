@@ -23,9 +23,7 @@ export class Administracion implements OnInit {
     descripcion: '',
     preguntas: []
   };
-
   nuevaPregunta = '';
-  //opciones: string[] = ['', ''];
 
   opciones: { texto_opcion: string; es_correcta: boolean;}[] = [
     {

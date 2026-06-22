@@ -4,6 +4,7 @@ import { ContenidoService } from '../../../../core/service/contenido.service';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { RegistroEdicionContenido } from '../../../components/forms/registro-edicion-contenido/registro-edicion-contenido';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contenido',
@@ -14,6 +15,7 @@ import { RegistroEdicionContenido } from '../../../components/forms/registro-edi
 export class Contenido implements OnInit {
   private readonly contenidoService = inject(ContenidoService);
   private readonly dialog = inject(MatDialog);
+  private readonly router = inject(Router);
   esAdministrador = false;
   contenidos: ContenidoModel[] = [];
 
@@ -129,5 +131,9 @@ export class Contenido implements OnInit {
         });
 
     });
+  }
+
+  irJuegos(): void {
+    this.router.navigate(['/home/contenido/juegos/clasificar-habitos']);
   }
 }
