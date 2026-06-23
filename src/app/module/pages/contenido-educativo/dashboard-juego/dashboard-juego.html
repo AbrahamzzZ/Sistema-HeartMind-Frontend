@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="hero">
+    <div>
+      <h1>Juegos Educativos</h1>
+      <p>
+        Aprende sobre la salud cardiovascular mientras te diviertes con actividades interactivas.
+      </p>
+    </div>
+
+    <div class="hero-icon">
+      <mat-icon>sports_esports</mat-icon>
+    </div>
+  </div>
+
+  <div class="juegos-grid">
+
+    @for (juego of juegos; track juego.id) {
+      <mat-card class="juego-card">
+        <div class="juego-icon">
+          <mat-icon>favorite</mat-icon>
+        </div>
+
+        <mat-card-header>
+          <mat-card-title>{{ juego.nombre }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>{{ juego.descripcion }}</p>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button mat-flat-button color="primary" (click)="abrirJuego(juego)">
+            <mat-icon>play_arrow</mat-icon>
+            Jugar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+</div>

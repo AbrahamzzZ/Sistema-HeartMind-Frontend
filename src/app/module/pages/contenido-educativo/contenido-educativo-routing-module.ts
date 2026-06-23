@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Contenido } from './contenido/contenido';
 import { JuegoClasificarHabitos } from './juego-clasificar-habitos/juego-clasificar-habitos';
+import { DashboardJuego } from './dashboard-juego/dashboard-juego';
 
 const routes: Routes = [
   {
     path: '',component: Contenido, title: 'Contenido educativo'
+  },
+  {
+    path: 'juegos', component: DashboardJuego, title: 'Juegos educativos'
   },
   {
     path: 'juegos/clasificar-habitos', component: JuegoClasificarHabitos, title: 'Clasificar Habitos'

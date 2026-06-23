@@ -9,17 +9,16 @@ import { CrearClasificaHabitosRequest } from '../interface/contenido/juego/crear
 })
 export class ClasificaHabitos {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = `${ENV.apiUrl}/juegos.routes.php`;
 
   obtenerDatosJuego(juegoId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}?clasifica_id=${juegoId}`);
+    return this.http.get(`${ENV.apiUrl}?ruta=juegos&clasifica_id=${juegoId}`);
   }
 
   crearJuegoCompleto(request: CrearClasificaHabitosRequest): Observable<any> {
-    return this.http.post(`${this.apiUrl}?accion=clasifica-crear-completo`, request);
+    return this.http.post(`${ENV.apiUrl}?accion=clasifica-crear-completo`, request);
   }
 
   actualizarJuegoCompleto(request: CrearClasificaHabitosRequest): Observable<any> {
-    return this.http.post(`${this.apiUrl}?accion=clasifica-actualizar-completo`, request);
+    return this.http.post(`${ENV.apiUrl}?accion=clasifica-actualizar-completo`, request);
   }
 }

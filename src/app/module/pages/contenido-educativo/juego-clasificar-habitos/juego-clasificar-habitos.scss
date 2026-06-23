@@ -1,26 +1,229 @@
+:host {
+  display: block;
+}
+
 .contenedor-juego {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: Roboto, Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  background: #f6f8fc;
 }
 
-.categorias {
+.header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1f2a44;
+}
+
+.header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ZONA PENDIENTES - ALTURA FIJA */
+.zona-pendientes {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  border-left: 5px solid #3b82f6;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  height: 300px;
   display: flex;
+  flex-direction: column;
+}
+
+.zona-pendientes h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #2563eb;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ITEMS PENDIENTES - MÁS ESPACIOSOS */
+.items-pendientes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Scrollbar personalizado */
+.items-pendientes::-webkit-scrollbar {
+  width: 6px;
+}
+
+.items-pendientes::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.items-pendientes::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.items-pendientes::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* CATEGORÍAS GRID - DOS COLUMNAS LADO A LADO */
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-.categoria,
-.zona {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  min-height: 250px;
+.categoria {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  transition: all 0.2s ease;
+}
+
+.categoria:hover {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+}
+
+.categoria-header {
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #f1f5f9, #ffffff);
+  border-bottom: 1px solid #e5e7eb;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.categoria-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ZONA DROP - ALTURA FIJA CON SCROLL */
+.zona-categoria {
+  flex: 1;
   padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  transition: background 0.2s ease;
+}
+
+.zona-categoria::-webkit-scrollbar {
+  width: 6px;
+}
+
+.zona-categoria::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.zona-categoria::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.zona-categoria::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.zona-categoria.cdk-drop-list-dragging {
+  background: #f0f9ff;
 }
 
 .item {
-  padding: 10px;
-  margin-bottom: 8px;
-  background: #f5f5f5;
-  border-radius: 4px;
-  cursor: move;
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: grab;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  color: #111827;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: #3b82f6;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.4;
+  background: #e0e7ff;
+  border: 1px dashed #3b82f6;
+  border-radius: 8px;
+}
+
+.cdk-drag-animating {
+  transition: transform 150ms ease;
+}
+
+.acciones {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.acciones button {
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-weight: 600;
+  height: 46px;
+}
+
+@media (max-width: 1024px) {
+  .categorias {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .contenedor-juego {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .header h2 {
+    font-size: 22px;
+  }
+
+  .zona-pendientes {
+    height: 250px;
+  }
+
+  .items-pendientes {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+  }
+
+  .categoria {
+    height: 350px;
+  }
 }
