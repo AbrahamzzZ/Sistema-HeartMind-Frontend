@@ -1,79 +1,70 @@
 <div class="contenedor-juego">
 
-  <!-- Pendientes -->
-  <div
-    cdkDropList
-    id="pendientes"
-    #pendientesList="cdkDropList"
-    [cdkDropListData]="pendientes"
-    [cdkDropListConnectedTo]="categoriasConectadas"
-    (cdkDropListDropped)="drop($event)"
-    class="zona">
-
-    <h3>Hábitos pendientes</h3>
-
-    @for(item of pendientes; track item.id){
-
-      <div
-        cdkDrag
-        class="item">
-
-        {{ item.texto }}
-
-      </div>
-
-    }
-
+  <div class="header">
+    <h2>Clasifica tus hábitos</h2>
+    <p>Arrastra cada hábito a la categoría correcta</p>
   </div>
 
-  <!-- Categorías -->
+  <div class="zona-pendientes">
+    <h3>Hábitos pendientes</h3>
+    
+    <div
+      cdkDropList
+      id="pendientes"
+      #pendientesList="cdkDropList"
+      [cdkDropListData]="pendientes"
+      [cdkDropListConnectedTo]="todasLasZonas"
+      (cdkDropListDropped)="drop($event)"
+      class="items-pendientes">
+
+      @for(item of pendientes; track item.id){
+        <div cdkDrag class="item">
+          {{ item.texto }}
+        </div>
+      }
+
+      @if(pendientes.length === 0) {
+        <p style="color: #9ca3af; font-size: 13px; margin: 0; text-align: center;">
+          ✓ Todos clasificados
+        </p>
+      }
+    </div>
+  </div>
+
   <div class="categorias">
-
     @for(categoria of categorias; track categoria.id){
-
       <div class="categoria">
 
-        <h3>{{ categoria.nombre }}</h3>
+        <div class="categoria-header">
+          <h3>{{ categoria.nombre }}</h3>
+        </div>
 
         <div
           cdkDropList
           [id]="'cat-' + categoria.id"
           [cdkDropListData]="categoria.items"
-          [cdkDropListConnectedTo]="['pendientes']"
+          [cdkDropListConnectedTo]="todasLasZonas"
           (cdkDropListDropped)="drop($event)"
-          class="zona">
+          class="zona-categoria">
 
-          @for(item of categoria.items; track item.id){
-
-            <div
-              cdkDrag
-              class="item">
-
-              {{ item.texto }}
-
-            </div>
-
+          @if(categoria.items.length === 0) {
+            <p style="color: #9ca3af; font-size: 13px; margin: 0; text-align: center;">
+              Arrastra aquí
+            </p>
           }
 
+          @for(item of categoria.items; track item.id){
+            <div cdkDrag class="item">
+              {{ item.texto }}
+            </div>
+          }
         </div>
-
       </div>
-
     }
-
   </div>
-
   <div class="acciones">
-
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="validar()">
-
+    <button mat-raised-button color="primary" (click)="validar()">
       Finalizar
-
     </button>
-
   </div>
-
 </div>

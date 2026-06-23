@@ -33,18 +33,15 @@ export class Contenido implements OnInit {
       .lista()
       .subscribe({
         next: (resp) => {
-
           this.contenidos = resp.data ?? [];
 
         },
         error: () => {
-
           Swal.fire({
             icon: 'error',
             title: 'Error',
             text: 'No se pudieron cargar los contenidos.'
           });
-
         }
       });
   }
@@ -110,23 +107,19 @@ export class Contenido implements OnInit {
         .eliminar(id)
         .subscribe({
           next: () => {
-
             Swal.fire({
               icon: 'success',
               title: 'Eliminado',
               text: 'Contenido eliminado correctamente.'
             });
-
             this.cargarContenidos();
           },
           error: () => {
-
             Swal.fire({
               icon: 'error',
               title: 'Error',
               text: 'No se pudo eliminar el contenido.'
             });
-
           }
         });
 
@@ -134,6 +127,6 @@ export class Contenido implements OnInit {
   }
 
   irJuegos(): void {
-    this.router.navigate(['/home/contenido/juegos/clasificar-habitos']);
+    this.router.navigate(['/home/contenido/juegos']);
   }
 }

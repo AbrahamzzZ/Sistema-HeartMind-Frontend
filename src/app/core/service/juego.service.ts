@@ -2,19 +2,19 @@ import { inject, Injectable } from '@angular/core';
 import { environment as ENV } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Juego } from '../interface/contenido/juego/juego';
 
 @Injectable({
   providedIn: 'root',
 })
-export class Juego {
+export class JuegoService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = `${ENV.apiUrl}/juegos.routes.php`;
 
-  obtenerJuegos(): Observable<Juego[]> {
-    return this.http.get<Juego[]>(`${this.apiUrl}?listar=1`);
+  obtenerJuegos(): Observable<any> {
+    return this.http.get<any>(`${ENV.apiUrl}?ruta=juegos&listar`);
   }
 
   obtenerJuego(codigo: string): Observable<Juego> {
-    return this.http.get<Juego>(`${this.apiUrl}?juego=${codigo}`);
+    return this.http.get<Juego>(`${ENV.apiUrl}?juego=${codigo}`);
   }
 }
