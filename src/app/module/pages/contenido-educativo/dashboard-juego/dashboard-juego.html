@@ -13,6 +13,14 @@
   </div>
 
   <div class="juegos-grid">
+    @if (esAdministrador) {
+      <div class="toolbar">
+        <button mat-flat-button color="primary" class="btn-nuevo" (click)="crearJuego()">
+          <mat-icon>add</mat-icon>
+          Nuevo Juego
+        </button>
+      </div>
+    }
 
     @for (juego of juegos; track juego.id) {
       <mat-card class="juego-card">
@@ -29,7 +37,13 @@
         </mat-card-content>
 
         <mat-card-actions align="end">
-          <button mat-flat-button color="primary" (click)="abrirJuego(juego)">
+          @if(esAdministrador){
+            <button mat-icon-button class="btn-configurar" (click)="configurarJuego(juego)">
+              <mat-icon>settings</mat-icon>
+            </button>
+          }
+
+          <button mat-flat-button color="primary" class="btn-jugar" (click)="abrirJuego(juego)">
             <mat-icon>play_arrow</mat-icon>
             Jugar
           </button>

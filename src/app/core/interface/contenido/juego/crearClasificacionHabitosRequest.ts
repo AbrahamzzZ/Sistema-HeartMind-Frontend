@@ -1,12 +1,8 @@
+import { JuegoCategoria } from "./juegoCategoria";
+import { JuegoItem } from "./juegoItem";
+
 export interface CrearClasificaHabitosRequest {
   juego_id: number;
-  categorias: {
-    nombre: string;
-    orden: number;
-  }[];
-  items: {
-    texto: string;
-    categoriaCorrectaId: number;
-    orden: number;
-  }[];
+  categorias: JuegoCategoria[];
+  items: JuegoItem[];
 }

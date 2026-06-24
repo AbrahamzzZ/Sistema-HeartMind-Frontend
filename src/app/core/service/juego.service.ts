@@ -17,4 +17,8 @@ export class JuegoService {
   obtenerJuego(codigo: string): Observable<Juego> {
     return this.http.get<Juego>(`${ENV.apiUrl}?juego=${codigo}`);
   }
+
+  crearJuego(request: Juego): Observable<any> {
+    return this.http.post<any>(`${ENV.apiUrl}?ruta=juegos&accion=crear-juego`, request);
+  }
 }

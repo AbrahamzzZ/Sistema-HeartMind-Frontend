@@ -3,7 +3,7 @@
 }
 
 .contenedor-juego {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 24px;
   font-family: Roboto, Arial, sans-serif;
@@ -31,14 +31,13 @@
   font-size: 14px;
 }
 
-/* ZONA PENDIENTES - ALTURA FIJA */
 .zona-pendientes {
   background: white;
   border-radius: 14px;
   padding: 16px;
   border-left: 5px solid #3b82f6;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
-  height: 300px;
+  height: 150px;
   display: flex;
   flex-direction: column;
 }
@@ -51,17 +50,16 @@
   flex-shrink: 0;
 }
 
-/* ITEMS PENDIENTES - MÁS ESPACIOSOS */
 .items-pendientes {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
   gap: 12px;
   flex: 1;
   overflow-y: auto;
   padding-right: 4px;
 }
 
-/* Scrollbar personalizado */
 .items-pendientes::-webkit-scrollbar {
   width: 6px;
 }
@@ -79,7 +77,6 @@
   background: #94a3b8;
 }
 
-/* CATEGORÍAS GRID - DOS COLUMNAS LADO A LADO */
 .categorias {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -94,7 +91,7 @@
   border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 220px;
   transition: all 0.2s ease;
 }
 
@@ -119,13 +116,13 @@
   color: #111827;
 }
 
-/* ZONA DROP - ALTURA FIJA CON SCROLL */
 .zona-categoria {
   flex: 1;
   padding: 12px;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 10px;
   overflow-y: auto;
   transition: background 0.2s ease;
 }
@@ -152,22 +149,21 @@
 }
 
 .item {
-  padding: 10px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 10px 14px;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  border: 1px solid #dbe4f0;
+  border-radius: 999px;
   cursor: grab;
-  transition: all 0.2s ease;
-  font-size: 13px;
-  color: #111827;
   user-select: none;
-  flex-shrink: 0;
-}
-
-.item:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border-color: #3b82f6;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1f2937;
+  transition: all 0.2s ease;
 }
 
 .item:active {
