@@ -1,0 +1,121 @@
+<form [formGroup]="form" class="formulario-juego">
+
+  <div class="hero">
+    <mat-icon>sports_esports</mat-icon>
+
+    <div>
+      <h1>Configuración del Juego</h1>
+      <p>Define categorías e items para la actividad educativa.</p>
+    </div>
+  </div>
+
+  <mat-card class="section-card">
+    <div class="section-header">
+      <mat-icon>info</mat-icon>
+      <h2>Datos Generales</h2>
+    </div>
+
+    <div class="grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo">
+      </mat-form-field>
+
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput rows="4" formControlName="descripcion">
+      </textarea>
+    </mat-form-field>
+
+  </mat-card>
+
+  <mat-card class="section-card">
+    <div class="section-header">
+      <div class="title">
+        <mat-icon>category</mat-icon>
+        <h2>Categorías</h2>
+      </div>
+
+      <button  mat-stroked-button type="button" (click)="agregarCategoria()">
+        <mat-icon>add</mat-icon>
+        Agregar
+      </button>
+
+    </div>
+
+    <div formArrayName="categorias">
+      @for(cat of categorias.controls; track $index){
+        <div class="categoria-row" [formGroupName]="$index">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Categoría {{ $index + 1 }}</mat-label>
+            <input  matInput formControlName="nombre">
+          </mat-form-field>
+
+          <button  mat-icon-button color="warn" type="button"  (click)="eliminarCategoria($index)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </div>
+
+      }
+
+    </div>
+
+  </mat-card>
+
+  <mat-card class="section-card">
+    <div class="section-header">
+      <div class="title">
+        <mat-icon>list_alt</mat-icon>
+        <h2>Items</h2>
+      </div>
+
+      <button mat-stroked-button type="button" (click)="agregarItem()">
+        <mat-icon>add</mat-icon>
+        Agregar
+      </button>
+    </div>
+
+    <div formArrayName="items">
+      @for(item of items.controls; track $index){
+
+        <div class="item-row" [formGroupName]="$index">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Texto</mat-label>
+            <input matInput formControlName="texto">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="categoria_index">
+              @for(cat of categorias.controls; track $index){
+                <mat-option [value]="$index">
+                  {{ cat.value.nombre }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      }
+
+    </div>
+
+  </mat-card>
+
+  <div class="acciones">
+    <button mat-flat-button color="primary" type="button" (click)="guardar()">
+      <mat-icon>save</mat-icon>
+      Guardar Juego
+    </button>
+  </div>
+
+</form>

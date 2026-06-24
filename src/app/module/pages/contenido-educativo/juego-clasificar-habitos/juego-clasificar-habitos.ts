@@ -91,8 +91,8 @@ export class JuegoClasificarHabitos implements OnInit {
     });
 
     const porcentaje = Math.round((correctos / total) * 100);
-    let icon: 'success' | 'info' | 'warning' = 'success';
-    let titulo = '';
+    let icon: 'success' | 'info' | 'warning';
+    let titulo: string;
     
     if (porcentaje === 100) {
       icon = 'success';
