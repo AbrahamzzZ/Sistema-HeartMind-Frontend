@@ -15,10 +15,10 @@ export class ClasificaHabitos {
   }
 
   crearJuegoCompleto(request: CrearClasificaHabitosRequest): Observable<any> {
-    return this.http.post(`${ENV.apiUrl}?accion=clasifica-crear-completo`, request);
+    return this.http.post(`${ENV.apiUrl}?ruta=juegos&accion=clasifica-crear-completo`, request);
   }
 
   actualizarJuegoCompleto(request: CrearClasificaHabitosRequest): Observable<any> {
-    return this.http.post(`${ENV.apiUrl}?accion=clasifica-actualizar-completo`, request);
+    return this.http.post(`${ENV.apiUrl}?ruta=juegos&accion=clasifica-actualizar-completo`, request);
   }
 }
