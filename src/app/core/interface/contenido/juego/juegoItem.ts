@@ -1,4 +1,4 @@
 export interface JuegoItem {
   texto: string;
-  categoria_index: number;
+  categoria_correcta_id: number;
 }

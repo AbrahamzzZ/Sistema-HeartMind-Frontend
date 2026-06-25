@@ -51,20 +51,19 @@
     </div>
 
     <div formArrayName="categorias">
-      @for(cat of categorias.controls; track $index){
-        <div class="categoria-row" [formGroupName]="$index">
+      @for(cat of categorias.controls; let catIndex = $index; track catIndex){
+        <div class="categoria-row" [formGroupName]="catIndex">
 
           <mat-form-field appearance="outline">
-            <mat-label>Categoría {{ $index + 1 }}</mat-label>
-            <input  matInput formControlName="nombre">
+            <mat-label>Categoría {{ catIndex + 1 }}</mat-label>
+            <input matInput formControlName="nombre">
           </mat-form-field>
 
-          <button  mat-icon-button color="warn" type="button"  (click)="eliminarCategoria($index)">
+          <button mat-icon-button color="warn" type="button" (click)="eliminarCategoria(catIndex)">
             <mat-icon>delete</mat-icon>
           </button>
 
         </div>
-
       }
 
     </div>
@@ -85,9 +84,9 @@
     </div>
 
     <div formArrayName="items">
-      @for(item of items.controls; track $index){
+      @for(item of items.controls; let itemIndex = $index; track itemIndex){
 
-        <div class="item-row" [formGroupName]="$index">
+        <div class="item-row" [formGroupName]="itemIndex">
 
           <mat-form-field appearance="outline">
             <mat-label>Texto</mat-label>
@@ -96,14 +95,18 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Categoría</mat-label>
-            <mat-select formControlName="categoria_index">
-              @for(cat of categorias.controls; track $index){
-                <mat-option [value]="$index">
+            <mat-select formControlName="categoria_correcta_id">
+              @for(cat of categorias.controls; let catIndex = $index; track catIndex){
+                <mat-option [value]="cat.value.id">
                   {{ cat.value.nombre }}
                 </mat-option>
               }
             </mat-select>
           </mat-form-field>
+
+          <button mat-icon-button color="warn" type="button" (click)="eliminarItem(itemIndex)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
       }
 
@@ -116,6 +119,10 @@
       <mat-icon>save</mat-icon>
       Guardar Juego
     </button>
-  </div>
 
+    <button mat-stroked-button type="button" (click)="volver()">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
 </form>
