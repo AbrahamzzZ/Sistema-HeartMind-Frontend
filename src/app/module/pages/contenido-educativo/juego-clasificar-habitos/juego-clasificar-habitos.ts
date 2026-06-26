@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, inject, OnInit } from '@angular/core';
 import { ClasificaHabitos } from '../../../../core/service/clasifica-habitos.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-juego-clasificar-habitos',
@@ -11,16 +12,22 @@ import Swal from 'sweetalert2';
 })
 export class JuegoClasificarHabitos implements OnInit {
   private readonly service = inject(ClasificaHabitos);
+  private readonly route = inject(ActivatedRoute);
   categorias: any[] = [];
   pendientes: any[] = [];
   todasLasZonas: string[] = [];
+  juegoId?: number;
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.juegoId = Number(id);
     this.cargarJuego();
   }
 
   cargarJuego(): void {
-    this.service.obtenerDatosJuego(1)
+    if (!this.juegoId) return;
+
+    this.service.obtenerDatosJuego(this.juegoId)
       .subscribe({
         next: (response) => {
 
