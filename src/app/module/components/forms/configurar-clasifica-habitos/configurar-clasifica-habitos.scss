@@ -81,19 +81,35 @@
 
 .categoria-row,
 .item-row {
-  display: grid;
-  align-items: center;
+  display: flex;
   gap: 16px;
-
   margin-bottom: 16px;
 }
 
 .categoria-row {
-  grid-template-columns: 1fr auto;
+  mat-form-field {
+    flex: 1;
+  }
+  
+  button {
+    margin-bottom: 0;
+    height: 56px;
+  }
 }
 
 .item-row {
-  grid-template-columns: 2fr 1fr;
+  mat-form-field:first-child {
+    flex: 2;
+  }
+  
+  mat-form-field:last-of-type {
+    flex: 1;
+  }
+  
+  button {
+    margin-bottom: 0;
+    height: 56px;
+  }
 }
 
 mat-form-field {
