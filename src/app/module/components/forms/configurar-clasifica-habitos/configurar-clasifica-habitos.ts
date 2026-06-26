@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ClasificaHabitos } from '../../../../core/service/clasifica-habitos.service';
 import { JuegoService } from '../../../../core/service/juego.service';
 import Swal from 'sweetalert2';
+import { nanoid } from 'nanoid';
 import { CrearClasificaHabitosRequest } from '../../../../core/interface/contenido/juego/crearClasificacionHabitosRequest';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -27,13 +28,14 @@ export class ConfigurarClasificaHabitos implements OnInit {
 
   form = this.fb.group({
     nombre: ['', Validators.required],
-    codigo: ['', Validators.required],
+    codigo: [''],
     descripcion: [''],
     categorias: this.fb.array([]),
     items: this.fb.array([])
   });
 
   constructor() {
+    this.generarCodigo();
     this.agregarCategoria();
     this.agregarCategoria();
   }
@@ -223,15 +225,26 @@ export class ConfigurarClasificaHabitos implements OnInit {
   }
 
   actualizar(): void {
+    const idAIndiceMap = new Map<number, number>();
+    this.categorias.controls.forEach((control, index) => {
+      const id = Number(control.get('id')?.value);
+      idAIndiceMap.set(id, index);
+    });
+
     const request: CrearClasificaHabitosRequest = {
       juego_id: this.juegoId!,
       categorias: this.categorias.controls.map(c => ({
         nombre: c.get('nombre')?.value
       })),
-      items: this.items.controls.map(i => ({
-        texto: i.get('texto')?.value,
-        categoria_correcta_id: Number(i.get('categoria_correcta_id')?.value)
-      }))
+      items: this.items.controls.map(i => {
+        const categoriaIdBD = Number(i.get('categoria_correcta_id')?.value);
+        const indice = idAIndiceMap.get(categoriaIdBD) ?? 0;
+
+        return {
+          texto: i.get('texto')?.value,
+          categoria_correcta_id: indice 
+        };
+      })
     };
 
     this.clasificaHabitosService.actualizarJuegoCompleto(request).subscribe({
@@ -274,5 +287,10 @@ export class ConfigurarClasificaHabitos implements OnInit {
     }
 
     this.router.navigate(['/home/contenido/juegos']);
+  }
+
+  generarCodigo(): void {
+    const codigo = `JG_${nanoid(12).toLowerCase()}`;
+    this.form.patchValue({ codigo });
   }
 }
