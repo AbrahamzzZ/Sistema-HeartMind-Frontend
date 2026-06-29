@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Evalucion } from './evalucion/evalucion';
+import { Evaluacion } from './evalucion/evalucion';
 
 const routes: Routes = [
   {
-    path: '', component: Evalucion, title: 'Evaluación cardiovascular'
+    path: '', component: Evaluacion, title: 'Evaluación cardiovascular'
   }
 ];
 

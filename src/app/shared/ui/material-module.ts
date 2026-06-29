@@ -27,6 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [],
@@ -59,7 +60,8 @@ import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
     MatSlideToggleModule,
     MatTooltipModule,
     MatRadioButton,
-    MatRadioGroup
+    MatRadioGroup,
+    MatDividerModule,
   ],
   exports: [
     CommonModule,
@@ -90,7 +92,8 @@ import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
     MatSlideToggleModule,
     MatTooltipModule,
     MatRadioButton,
-    MatRadioGroup
+    MatRadioGroup,
+    MatDividerModule,
   ]
 })
 export class MaterialModule { }

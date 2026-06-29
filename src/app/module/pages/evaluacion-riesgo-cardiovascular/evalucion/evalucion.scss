@@ -67,7 +67,6 @@ mat-card-title {
 
 .checks {
   margin-top: 24px;
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
@@ -84,6 +83,7 @@ mat-card-title {
   margin-top: 28px;
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
 }
 
 button {
@@ -94,10 +94,7 @@ button {
 .resultado-card {
   margin-top: 28px;
   border-radius: 24px;
-
-  box-shadow:
-    0 4px 12px rgba(15, 23, 42, .05),
-    0 16px 40px rgba(15, 23, 42, .08);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, .05), 0 16px 40px rgba(15, 23, 42, .08);
 }
 
 .resultado-badge {
@@ -152,9 +149,7 @@ button {
 .dato {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-
   border-radius: 18px;
-
   padding: 20px;
   text-align: center;
 }
@@ -221,10 +216,8 @@ li {
   width: 100%;
   max-width: 260px;
   border-radius: 18px;
-  box-shadow:
-    0 6px 20px rgba(15, 23, 42, .08);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, .08);
 }
-
 
 @media (max-width: 900px) {
 

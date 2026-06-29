@@ -23,7 +23,6 @@
 
     <div class="stat-card">
       <span class="stat-value">{{ totalRiesgoModerado }}</span>
-
       <span class="stat-label">Riesgo Moderado</span>
     </div>
   </div>
@@ -39,7 +38,7 @@
       <div class="toolbar">
         <mat-form-field appearance="outline" class="search-field">
           <mat-label>Buscar</mat-label>
-          <input matInput (keyup)="aplicarFiltro($event)" placeholder="Buscar evaluación">
+          <input matInput (keyup)="aplicarFiltro($event)">
           <mat-icon matSuffix>search</mat-icon>
 
         </mat-form-field>
@@ -50,36 +49,29 @@
       <div class="table-container">
         <table mat-table [dataSource]="dataSource">
 
-          <ng-container matColumnDef="fecha">
+          <ng-container matColumnDef="fechaEvaluacion">
             <th mat-header-cell *matHeaderCellDef>Fecha</th>
-
-            <td mat-cell *matCellDef="let row">{{ row.fecha_evaluacion }}</td>
+            <td mat-cell *matCellDef="let row">{{ row.fechaEvaluacion | date:'dd/MM/yyyy HH:mm' }}</td>
           </ng-container>
 
           <ng-container matColumnDef="imc">
             <th mat-header-cell *matHeaderCellDef>IMC</th>
-
             <td mat-cell *matCellDef="let row">{{ row.imc }}</td>
           </ng-container>
 
-          <ng-container matColumnDef="puntaje">
-            <th mat-header-cell *matHeaderCellDef>Puntaje</th>
-
-            <td mat-cell *matCellDef="let row">{{ row.puntaje }}</td>
+          <ng-container matColumnDef="porcentajeRiesgo">
+            <th mat-header-cell *matHeaderCellDef>Riesgo (%)</th>
+            <td mat-cell *matCellDef="let row">{{ row.porcentajeRiesgo }}%</td>
           </ng-container>
 
-          <ng-container matColumnDef="riesgo">
+          <ng-container matColumnDef="resultadoRiesgo">
             <th mat-header-cell *matHeaderCellDef>Riesgo</th>
-
             <td mat-cell *matCellDef="let row">
-              <span class="badge-riesgo" [class.bajo]="row.resultado_riesgo === 'Bajo'" [class.moderado]="row.resultado_riesgo === 'Moderado'" [class.alto]="row.resultado_riesgo === 'Alto'">
-                {{ row.resultado_riesgo }}
-              </span>
+              <span class="badge-riesgo" [class.bajo]="row.resultadoRiesgo === 'Bajo'" [class.moderado]="row.resultadoRiesgo === 'Moderado'" [class.alto]="row.resultadoRiesgo === 'Alto'">{{ row.resultadoRiesgo }}</span>
             </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
       </div>
