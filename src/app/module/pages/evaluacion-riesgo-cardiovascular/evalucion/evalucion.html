@@ -4,167 +4,208 @@
       <h1>Autoevaluación de Riesgo Cardiovascular</h1>
       <p>Conoce tu nivel de riesgo cardiovascular mediante una evaluación rápida basada en indicadores de salud y hábitos de vida.</p>
     </div>
-
     <div class="hero-icon">
       <mat-icon>favorite</mat-icon>
     </div>
   </div>
-  
+
   <mat-card class="card">
     <mat-card-header>
-      <mat-card-title>Autoevaluación de Riesgo Cardiovascular</mat-card-title>
+      <mat-card-title>Evaluación de Riesgo</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
       <form [formGroup]="form">
-        <div class="grid">
-          <mat-form-field appearance="outline">
-            <mat-label>Edad</mat-label>
-            <input matInput type="number" formControlName="edad">
-            @if(edad?.hasError('required')){
-              <mat-error>La edad es requerida.</mat-error>
-            }
-            @if(edad?.hasError('min') || edad?.hasError('max')){
-              <mat-error>Ingrese una edad válida (1-120).</mat-error>
-            }
-          </mat-form-field>
+        <div class="seccion">
+          <h3>Información Personal</h3>
+          <div class="grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Edad (años)</mat-label>
+              <input matInput type="number" formControlName="edad" min="18" max="120">
+              @if(edad?.hasError('required')) {
+                <mat-error>La edad es requerida.</mat-error>
+              }
+              @if(edad?.hasError('min') || edad?.hasError('max')) {
+                <mat-error>Ingrese una edad válida (18-120).</mat-error>
+              }
+            </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Peso (kg)</mat-label>
-            <input matInput type="number" formControlName="peso">
-            @if(peso?.hasError('required')){
-              <mat-error>El peso es requerido.</mat-error>
-            }
-            @if(peso?.hasError('min') || peso?.hasError('max')){
-              <mat-error>Peso fuera de rango (20-300 kg).</mat-error>
-            }
-          </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Género</mat-label>
+              <mat-select formControlName="genero">
+                <mat-option value="1">Mujer</mat-option>
+                <mat-option value="2">Hombre</mat-option>
+              </mat-select>
+              @if(genero?.hasError('required')) {
+                <mat-error>Requerido</mat-error>
+              }
+            </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Altura (m)</mat-label>
-            <input matInput type="number" step="0.01" formControlName="altura">
-            @if(altura?.hasError('required')){
-              <mat-error>La altura es requerida.</mat-error>
-            }
-            @if(altura?.hasError('min') || altura?.hasError('max')){
-              <mat-error>Altura fuera de rango (0.50 - 2.50 m).</mat-error>
-            }
-          </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Altura (cm)</mat-label>
+              <input matInput type="number" formControlName="altura" min="100" max="220">
+              @if(altura?.hasError('required')) {
+                <mat-error>La altura es requerida.</mat-error>
+              }
+              @if(altura?.hasError('min') || altura?.hasError('max')) {
+                <mat-error>Altura fuera de rango (100-220 cm).</mat-error>
+              }
+            </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Presión sistólica</mat-label>
-            <input matInput type="number" formControlName="presionSistolica">
-            @if(presionSistolica?.hasError('required')){
-              <mat-error>Este campo es requerido.</mat-error>
-            }
-            @if(presionSistolica?.hasError('min') || presionSistolica?.hasError('max')){
-              <mat-error>Valor fuera de rango (50-250).</mat-error>
-            }
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Presión diastólica</mat-label>
-            <input matInput type="number" formControlName="presionDiastolica">
-            @if(presionDiastolica?.hasError('required')){
-              <mat-error>Este campo es requerido.</mat-error>
-            }
-            @if(presionDiastolica?.hasError('min') || presionDiastolica?.hasError('max')){
-              <mat-error>Valor fuera de rango (30-160).</mat-error>
-            }
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Colesterol</mat-label>
-            <input matInput type="number" formControlName="nivelColesterol">
-            @if(nivelColesterol?.hasError('required')){
-              <mat-error>Este campo es requerido.</mat-error>
-            }
-            @if(nivelColesterol?.hasError('min') || nivelColesterol?.hasError('max')){
-              <mat-error>Valor fuera de rango (50-400).</mat-error>
-            }
-          </mat-form-field>
-
+            <mat-form-field appearance="outline">
+              <mat-label>Peso (kg)</mat-label>
+              <input matInput type="number" formControlName="peso" min="30" max="200">
+              @if(peso?.hasError('required')) {
+                <mat-error>El peso es requerido.</mat-error>
+              }
+              @if(peso?.hasError('min') || peso?.hasError('max')) {
+                <mat-error>Peso fuera de rango (30-200 kg).</mat-error>
+              }
+            </mat-form-field>
+          </div>
         </div>
 
-        <div class="checks">
-          <mat-checkbox formControlName="fumador">Fumador</mat-checkbox>
-          <mat-checkbox formControlName="diabetico">Diabético</mat-checkbox>
-          <mat-checkbox formControlName="actividadFisica">Realiza actividad física</mat-checkbox>
-          <mat-checkbox formControlName="antecedentesFamiliares">Antecedentes familiares</mat-checkbox>
+        <div class="seccion">
+          <h3>Valores Clínicos</h3>
+          <div class="grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Presión Sistólica (mmHg)</mat-label>
+              <input matInput type="number" formControlName="presionSistolica" min="80" max="200">
+              @if(presionSistolica?.hasError('required')) {
+                <mat-error>Requerido</mat-error>
+              }
+              @if(presionSistolica?.hasError('min') || presionSistolica?.hasError('max')) {
+                <mat-error>Valor fuera de rango (80-200).</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Presión Diastólica (mmHg)</mat-label>
+              <input matInput type="number" formControlName="presionDiastolica" min="40" max="130">
+              @if(presionDiastolica?.hasError('required')) {
+                <mat-error>Requerido</mat-error>
+              }
+              @if(presionDiastolica?.hasError('min') || presionDiastolica?.hasError('max')) {
+                <mat-error>Valor fuera de rango (40-130).</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Colesterol (mg/dL)</mat-label>
+              <input matInput type="number" formControlName="nivelColesterol" min="50" max="400">
+              @if(nivelColesterol?.hasError('required')) {
+                <mat-error>Requerido</mat-error>
+              }
+              @if(nivelColesterol?.hasError('min') || nivelColesterol?.hasError('max')) {
+                <mat-error>Valor fuera de rango (50-400).</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Glucosa</mat-label>
+              <mat-select formControlName="glucosa">
+                <mat-option value="1">Normal (&lt; 100 mg/dL)</mat-option>
+                <mat-option value="2">Elevada (100-125 mg/dL)</mat-option>
+                <mat-option value="3">Alta (≥ 126 mg/dL)</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="seccion">
+          <h3>Factores de Riesgo</h3>
+          <div class="checks">
+            <mat-checkbox formControlName="fumador">
+              <strong>¿Eres fumador?</strong>
+            </mat-checkbox>
+            <mat-checkbox formControlName="alcohol">
+              <strong>¿Consumes alcohol regularmente?</strong>
+            </mat-checkbox>
+            <mat-checkbox formControlName="actividadFisica">
+              <strong>¿Realizas actividad física regularmente?</strong>
+            </mat-checkbox>
+          </div>
         </div>
 
         <div class="actions">
-          <button mat-flat-button color="primary" type="button" (click)="guardar()" [disabled]="form.invalid || (loading$ | async)">Evaluar Riesgo</button>
+          <button  mat-flat-button  color="primary"  type="button"  (click)="guardar()" [disabled]="form.invalid || (loading$ | async)">
+            <mat-icon>assessment</mat-icon>
+            {{ (loading$ | async) ? 'Evaluando...' : 'Evaluar Riesgo' }}
+          </button>
+          <button mat-stroked-button type="button" (click)="reiniciar()" [disabled]="(loading$ | async)">
+            <mat-icon>refresh</mat-icon>
+            Limpiar
+          </button>
         </div>
       </form>
     </mat-card-content>
   </mat-card>
 
-  @if(resultado){
-    <mat-card class="resultado-card">
-        <mat-card-header>
-            <mat-card-title>Resultado de la Evaluación</mat-card-title>
-        </mat-card-header>
+  @if(resultado) {
+    <mat-card class="resultado-card" [ngClass]="'riesgo-' + resultado.resultadoRiesgo.toLowerCase()">
+      <mat-card-header>
+        <mat-card-title>Resultado de la Evaluación</mat-card-title>
+      </mat-card-header>
 
-        <mat-card-content>
-            <div class="resultado-layout">
-              <div class="resultado-main">
+      <mat-card-content>
+        <div class="resultado-layout">
+          <div class="resultado-main">
+            <div class="resultado-badge" [ngClass]="resultado.resultadoRiesgo.toLowerCase()">
+              <mat-icon class="riesgo-icon">
+                {{ resultado.resultadoRiesgo === 'Bajo' ? 'favorite' :  resultado.resultadoRiesgo === 'Moderado' ? 'warning' :  'heart_broken' }}
+              </mat-icon>
+              <h2>{{ resultado.resultadoRiesgo }}</h2>
+              <p>Nivel de riesgo cardiovascular identificado</p>
+            </div>
 
-                <div
-                class="resultado-badge"
-                [class.bajo]="resultado.resultadoRiesgo === 'Bajo'"
-                [class.moderado]="resultado.resultadoRiesgo === 'Moderado'"
-                [class.alto]="resultado.resultadoRiesgo === 'Alto'">
-
-                <mat-icon class="riesgo-icon">
-                  {{
-                    resultado.resultadoRiesgo === 'Bajo'
-                      ? 'favorite'
-                      : resultado.resultadoRiesgo === 'Moderado'
-                        ? 'warning'
-                        : 'heart_broken'
-                  }}
-                </mat-icon>
-
-                <h2>{{ resultado.resultadoRiesgo }}</h2>
-
-                <p>Nivel de riesgo cardiovascular identificado</p>
-
-              </div>
-                <div class="resultado-grid">
-                  <div class="dato">
-                      <span class="label">IMC</span>
-                      <span class="valor">{{ resultado.imc }}</span>
-                  </div>
-
-                  <div class="dato">
-                      <span class="label">Puntaje</span>
-                      <span class="valor">{{ resultado.puntaje }}</span>
-                  </div>
-
-                  <div class="dato">
-                      <span class="label">Nivel de Riesgo</span>
-
-                      <span class="riesgo" [class.bajo]="resultado.resultadoRiesgo === 'Bajo'" [class.moderado]="resultado.resultadoRiesgo === 'Moderado'" [class.alto]="resultado.resultadoRiesgo === 'Alto'">{{ resultado.resultadoRiesgo }}</span>
-                  </div>
-                </div>
-
-                <mat-divider></mat-divider>
-                <h3>Recomendaciones</h3>
-                <ul>
-                  @for(recomendacion of resultado.recomendaciones; track recomendacion){
-                    <li>{{ recomendacion }}</li>
-                  }
-                </ul>
+            <div class="resultado-grid">
+              <div class="dato">
+                <span class="label">IMC</span>
+                <span class="valor">{{ resultado.imc }}</span>
               </div>
 
-              <div class="resultado-aside">
-                <div class="imagen-riesgo">
-                  <img [src]="getImagenRiesgo()" [alt]="resultado.resultadoRiesgo">
-                </div>
+              <div class="dato">
+                <span class="label">Probabilidad</span>
+                <span class="valor porcentaje">{{ resultado.porcentaje }}%</span>
+              </div>
+
+              <div class="dato">
+                <span class="label">Clasificación</span>
+                <span class="riesgo" [ngClass]="resultado.resultadoRiesgo.toLowerCase()">
+                  {{ resultado.resultadoRiesgo }}
+                </span>
               </div>
             </div>
-        </mat-card-content>
+
+            <mat-divider></mat-divider>
+
+            <div class="recomendaciones">
+              <h3>
+                <mat-icon>lightbulb</mat-icon>
+                Recomendaciones
+              </h3>
+              <ul>
+                @for(rec of resultado.recomendaciones; track rec) {
+                  <li>{{ rec }}</li>
+                }
+              </ul>
+            </div>
+
+            @if(resultado.resultadoRiesgo === 'Alto') {
+              <div class="alerta-alto">
+                <mat-icon>warning</mat-icon>
+                <p>Este resultado indica un riesgo cardiovascular elevado. Por favor, consulta con un profesional médico.</p>
+              </div>
+            }
+          </div>
+
+          <div class="resultado-aside">
+            <div class="imagen-riesgo">
+              <img [src]="getImagenRiesgo()" [alt]="resultado.resultadoRiesgo">
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
     </mat-card>
   }
 </div>

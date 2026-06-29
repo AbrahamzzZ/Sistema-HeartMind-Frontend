@@ -1,17 +1,13 @@
 export interface EvaluacionRiesgo{
-    id: number;
-    usuarioId: number;
     edad: number;
-    peso: number;
+    genero: number;
     altura: number;
-    imc: number;
+    peso: number;
     presionSistolica: number;
     presionDiastolica: number;
     nivelColesterol: number;
+    glucosa: number;
     fumador: boolean;
-    diabetico: boolean;
+    alcohol: boolean;
     actividadFisica: boolean;
-    antecedentesFamiliares: boolean;
-    puntaje: number;
-    resultadoRiesgo: string;
 }
