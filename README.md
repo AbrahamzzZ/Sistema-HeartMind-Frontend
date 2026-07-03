@@ -1,270 +1,167 @@
-# Sistema HeartMind - Frontend
+# Sistema HeartMind Frontend
 
 ## Descripción
 
-Frontend de la aplicación HeartMind, desarrollado con Angular 20. Proporciona una interfaz moderna y responsiva para que los usuarios puedan:
-- Registrarse e iniciar sesión
-- Realizar evaluaciones de riesgo cardiovascular
-- Responder cuestionarios interactivos
-- Acceder a contenidos educativos
-- Jugar el juego de clasificación de síntomas
-- Ver predicciones de riesgo basadas en un modelo de machine learning
-- Consultar su historial de evaluaciones y resultados
+Este repositorio contiene el frontend del proyecto Sistema HeartMind. La aplicación está desarrollada en Angular 20 y se ejecuta dentro de un contenedor Docker para ofrecer una interfaz moderna, responsiva y segura para usuarios y administradores. Permite registrar usuarios, autenticarse, completar evaluaciones de riesgo cardiovascular, responder cuestionarios, consultar contenidos educativos, participar en juegos interactivos y revisar predicciones de riesgo.
 
-## Stack tecnológico
+## Arquitectura del frontend
 
-- **Angular**: v20.3.0 - Framework principal
-- **Angular Material**: v20.2.14 - Componentes de UI
-- **Angular CDK**: v20.2.14 - Componentes y utilidades
-- **TypeScript**: Lenguaje de programación
-- **RxJS**: v7.8.0 - Programación reactiva
-- **SweetAlert2**: v11.26.25 - Alertas personalizadas
-- **XLSX**: v0.18.5 - Exportación de reportes a Excel
-- **Prettier**: Formateador de código
-- **Karma + Jasmine**: Testing unitario
+El frontend sigue una arquitectura modular basada en Angular con separación clara entre capas y responsabilidades:
+
+- `src/app/core/` - Servicios, guardias, interceptores y utilidades compartidas de la aplicación.
+- `src/app/module/` - Módulos de características organizados por dominio, con carga perezosa.
+- `src/app/shared/` - Componentes, pipes, directivas y modelos reutilizables.
+- `src/environments/` - Configuración específica por entorno.
+- `src/app/app.routes.ts` - Definición de rutas principales y navegación.
+- `src/app/app.config.ts` - Configuración global de la aplicación.
+- `src/public/` - Recursos estáticos como imágenes.
+
+## Módulos principales
+
+### Autenticación
+- Registro e inicio de sesión.
+- Gestión del token JWT.
+- Protección de rutas mediante guardias.
+
+### Evaluaciones de riesgo
+- Formulario de evaluación.
+- Visualización de resultados.
+- Historial de evaluaciones por usuario.
+
+### Cuestionarios
+- Consulta de cuestionarios disponibles.
+- Resolución de cuestionarios.
+- Historial de respuestas.
+
+### Contenidos educativos
+- Visualización de contenidos por categoría.
+- Acceso a materiales educativos.
+
+### Juegos educativos
+- Juego de clasificación interactivo.
+- Registro de resultados y puntuaciones.
+
+### Predicciones
+- Consulta de predicciones del modelo de machine learning.
+- Visualización de reportes de riesgo.
+
+## Herramientas utilizadas
+
+- Angular 20
+- TypeScript
+- RxJS
+- Angular Material
+- SCSS
+- Docker / Docker Compose
 
 ## Estructura del proyecto
 
-```
+```text
 Frontend/
 ├── src/
 │   ├── app/
-│   │   ├── core/              # Servicios, guardias, interceptores
-│   │   │   ├── services/      # Servicios HTTP y lógica compartida
-│   │   │   ├── guards/        # Guardias de autenticación y roles
-│   │   │   └── interceptors/  # Interceptores HTTP
-│   │   │
-│   │   ├── module/            # Módulos de características (lazy loading)
-│   │   │   ├── auth/          # Registro e inicio de sesión
-│   │   │   ├── dashboard/     # Panel principal del usuario
-│   │   │   ├── evaluacion/    # Evaluación de riesgo cardiovascular
-│   │   │   ├── cuestionarios/ # Gestión de cuestionarios
-│   │   │   ├── contenidos/    # Contenidos educativos
-│   │   │   ├── juego/         # Juego de clasificación
-│   │   │   ├── predicciones/  # Predicciones del modelo ML
-│   │   │   └── admin/         # Panel de administración
-│   │   │
-│   │   ├── shared/            # Componentes y utilidades compartidas
-│   │   │   ├── components/    # Componentes reutilizables
-│   │   │   ├── directives/    # Directivas personalizadas
-│   │   │   ├── pipes/         # Pipes personalizados
-│   │   │   ├── models/        # Modelos e interfaces TypeScript
-│   │   │   └── utils/         # Funciones utilitarias
-│   │   │
-│   │   ├── app.config.ts      # Configuración de la aplicación
-│   │   ├── app.routes.ts      # Rutas principales (lazy loading)
-│   │   ├── app.ts             # Componente raíz
-│   │   └── app.scss           # Estilos globales
-│   │
-│   ├── environments/          # Configuraciones por entorno
-│   │   ├── environment.ts     # Producción
-│   │   └── environment.development.ts # Desarrollo
-│   │
-│   ├── public/                # Activos estáticos (imágenes, etc.)
-│   │   └── images/
-│   │
-│   ├── styles.scss            # Estilos globales
-│   ├── main.ts                # Punto de entrada
-│   └── index.html             # HTML principal
-│
-├── angular.json               # Configuración de Angular CLI
-├── tsconfig.json              # Configuración de TypeScript
-├── tsconfig.app.json          # TypeScript para aplicación
-├── tsconfig.spec.json         # TypeScript para tests
-├── karma.conf.js              # Configuración de Karma
-├── package.json               # Dependencias
-├── dockerfile                 # Para contenerización
-├── docker-compose.yml         # Orquestación Docker
+│   │   ├── core/
+│   │   ├── module/
+│   │   ├── shared/
+│   │   ├── app.config.ts
+│   │   ├── app.routes.ts
+│   │   ├── app.ts
+│   │   └── app.scss
+│   ├── environments/
+│   ├── public/
+│   ├── styles.scss
+│   ├── main.ts
+│   └── index.html
+├── angular.json
+├── package.json
+├── tsconfig.json
+├── docker-compose.yml
+├── dockerfile
 └── README.md
 ```
 
-## Instalación y configuración
+## Variables y configuración
 
-### Requisitos previos
-- Node.js v20 o superior
-- npm v10 o superior
-- Angular CLI v20.3.13
+El frontend consume la API del backend a través de las variables definidas en `src/environments/`:
 
-### Instalación
+- `environment.ts` - Configuración de desarrollo/producción local.
+- `environment.development.ts` - Configuración específica para desarrollo.
 
-```bash
-cd Frontend
-npm install
-```
+Actualmente apunta a:
+- `apiUrl = http://localhost:8082/public/index.php`
 
-## Desarrollo local
-
-### Servidor de desarrollo
+## Clonar el repositorio
 
 ```bash
-npm start
-# o
-ng serve
+git clone https://github.com/AbrahamzzZ/Sistema-HeartMind-Frontend
+cd "Sistema-HeartMind-Frontend"
 ```
 
-La aplicación estará disponible en `http://localhost:4200/`. Se recargará automáticamente al modificar los archivos.
-
-### Construcción del proyecto
-
-Para compilar la aplicación en modo producción:
-
-```bash
-npm run build
-```
-
-Los artefactos compilados se guardarán en el directorio `dist/`.
-
-## Testing
-
-### Pruebas unitarias
-
-Para ejecutar las pruebas unitarias con Karma:
-
-```bash
-npm test
-# o
-ng test
-```
-
-### Pruebas end-to-end
-
-Para pruebas E2E (si está configurado):
-
-```bash
-ng e2e
-```
-
-## Generación de componentes
-
-Para generar nuevos componentes automáticamente:
-
-```bash
-ng generate component module/nombre/componentes/mi-componente
-# o simplemente
-ng generate component mi-componente
-```
-
-Para ver todas las opciones disponibles:
-
-```bash
-ng generate --help
-```
-
-## Docker
-
-### Construir imagen Docker
-
-```bash
-docker build -t heartemind-frontend:latest .
-```
-
-### Ejecutar con Docker Compose
+## Levantar el proyecto con Docker
 
 Desde la raíz del proyecto:
+
+```bash
+docker compose up -d
+```
+
+Si tu versión de Docker utiliza `docker-compose` en lugar de `docker compose`:
 
 ```bash
 docker-compose up -d
 ```
 
-La aplicación estará disponible en `http://localhost:80`.
+### Comandos útiles
 
-## Variables de entorno
+- Ver contenedores activos:
+  ```bash
+  docker compose ps
+  ```
+- Ver logs del frontend:
+  ```bash
+  docker compose logs -f frontend
+  ```
+- Detener los contenedores:
+  ```bash
+  docker compose down
+  ```
+- Reconstruir y levantar:
+  ```bash
+  docker compose up -d --build
+  ```
 
-Las configuraciones por entorno se encuentran en `src/environments/`:
+## Acceso a servicios
 
-- `environment.ts` - Configuración de producción
-- `environment.development.ts` - Configuración de desarrollo
+- Aplicación frontend: `http://localhost:4200`
 
-Incluyen:
-- URL del API backend
-- Configuración de características
-- Variables de configuración específicas del entorno
+## Desarrollo local
 
-## Arquitectura
+### Requisitos previos
 
-### Principios de diseño
+- Node.js 20.x o superior
+- npm 10.x o superior
+- Angular CLI 20.x
 
-- **Modularidad**: Cada funcionalidad está en su propio módulo con lazy loading
-- **Reusabilidad**: Componentes compartidos en la carpeta `shared/`
-- **Tipado fuerte**: TypeScript para mayor seguridad
-- **Reactividad**: RxJS para manejo de datos y eventos
-- **Separación de responsabilidades**: Servicios, guardias e interceptores separados
+### Instalar dependencias
 
-### Flujo de autenticación
+```bash
+npm install
+```
 
-1. El usuario inicia sesión
-2. Se obtiene un token JWT del backend
-3. El token se almacena en `localStorage`
-4. El interceptor HTTP añade el token a cada petición
-5. Los guardias protegen las rutas requiriendo autenticación
-6. Al cerrar sesión, se elimina el token
+### Ejecutar la aplicación localmente
 
-## Componentes principales
+```bash
+npm start
+```
 
-### Autenticación (`module/auth/`)
-- Registro de usuarios
-- Inicio de sesión
-- Recuperación de contraseña
+o
 
-### Evaluación (`module/evaluacion/`)
-- Formulario de evaluación de riesgo
-- Resultado de la evaluación
-- Historial de evaluaciones
+```bash
+ng serve
+```
 
-### Cuestionarios (`module/cuestionarios/`)
-- Listado de cuestionarios
-- Resolver cuestionarios
-- Historial de respuestas
-
-### Contenidos (`module/contenidos/`)
-- Contenidos educativos por categoría
-- Videos y materiales educativos
-
-### Juego (`module/juego/`)
-- Juego interactivo de clasificación
-- Registro de puntuaciones y resultados
-
-### Predicciones (`module/predicciones/`)
-- Consulta de predicciones del modelo ML
-- Reportes personalizados de riesgo
-
-## Servicios principales
-
-Los servicios están centralizados en `core/services/`:
-
-- `UsuarioService` - Gestión de usuarios y autenticación
-- `EvaluacionService` - Evaluaciones de riesgo
-- `CuestionarioService` - Gestión de cuestionarios
-- `ContenidoService` - Contenidos educativos
-- `JuegoService` - Interacción con juegos
-- `PrediccionService` - Predicciones del modelo ML
-- `AuthService` - Autenticación y manejo de tokens
-
-## Guardias de ruta
-
-Los guardias protegen el acceso a rutas:
-
-- `AuthGuard` - Requiere estar autenticado
-- `RoleGuard` - Valida roles de usuario (Admin/Usuario)
-- `AdminGuard` - Solo administradores
-
-## Interceptores HTTP
-
-- `JwtInterceptor` - Añade el token a cada petición
-- `ErrorInterceptor` - Maneja errores globales
-
-## Estilos
-
-### Temas
-
-Se utiliza Angular Material para los estilos. Los temas personalizados están definidos en:
-- `styles.scss` - Estilos globales y variables SCSS
-
-### Paleta de colores
-
-HeartMind utiliza una paleta de colores específica:
-- Primario: Tonos azules (confianza, salud)
-- Secundario: Tonos verdes (bienestar)
-- Riesgos: Tonos rojos/naranjas (alertas)
+La aplicación quedará disponible en `http://localhost:4200/`.
 
 ## Notas finales
+
+Asegúrate de tener Docker y Node.js instalados y funcionando. Si necesitas cambiar la URL del backend o la configuración del entorno, actualiza los archivos de `src/environments/` y vuelve a levantar la aplicación.
