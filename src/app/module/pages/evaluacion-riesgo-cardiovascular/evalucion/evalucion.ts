@@ -27,13 +27,13 @@ export class Evaluacion implements OnInit {
   inicializarFormulario(): void {
     this.form = this.fb.group({
       edad: [30, [Validators.required, Validators.min(18), Validators.max(120)]],
-      genero: [1, Validators.required],
+      genero: [1, [Validators.required]],
       altura: [170, [Validators.required, Validators.min(100), Validators.max(220)]],
       peso: [70, [Validators.required, Validators.min(30), Validators.max(200)]],
       presionSistolica: [120, [Validators.required, Validators.min(80), Validators.max(200)]],
       presionDiastolica: [80, [Validators.required, Validators.min(40), Validators.max(130)]],
       nivelColesterol: [180, [Validators.required, Validators.min(50), Validators.max(400)]],
-      glucosa: [1, Validators.required],
+      glucosa: [1, [Validators.required]],
       fumador: [false],
       alcohol: [false],
       actividadFisica: [false]
@@ -117,11 +117,11 @@ export class Evaluacion implements OnInit {
 
     switch (this.resultado.resultadoRiesgo) {
       case 'Bajo':
-        return '/image/riesgo-bajo.png';
+        return '/image/bajo.png';
       case 'Moderado':
-        return '/image/riesgo-moderado.png';
+        return '/image/moderado.png';
       case 'Alto':
-        return '/image/riesgo-alto.png';
+        return '/image/alto.png';
       default:
         return '';
     }
